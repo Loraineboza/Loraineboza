@@ -1,5 +1,2 @@
-An expert in UNIX system programming with a deep understanding of the OS kernel,
-I/O mechanisms and interprocess communication. Specialization:
-high-performance network applications, daemons and system utilities
-in the C language. Experience working with POSIX APIs, sockets, file systems
-, and Linux/BSD system calls.
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=liberte-Grant&layout=compact&theme=gotham&custom_title=Statistics)  
+
