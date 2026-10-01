@@ -1,1 +1,1 @@
-![Superman Point](https://media.tenor.com/Z-PXw2QeJ0AAAAAM/superman-point.gif)
+![Tired Superman](https://media.tenor.com/4wXbXqYyY0AAAAAM/tired-superman.gif)
