@@ -1,1 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-label="Анимация нейронной сети">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050816"/>
+      <stop offset=".5" stop-color="#101b3d"/>
+      <stop offset="1" stop-color="#02030b"/>
+    </linearGradient>
 
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#7df9ff" stop-opacity=".38"/>
+      <stop offset=".45" stop-color="#467dff" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#55eaff" stop-opacity=".05"/>
+      <stop offset=".5" stop-color="#b7ffff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#a877ff" stop-opacity=".05"/>
+    </linearGradient>
+
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8ffff"/>
+      <stop offset=".28" stop-color="#6af5ff"/>
+      <stop offset=".7" stop-color="#6b8dff"/>
+      <stop offset="1" stop-color="#d77cff"/>
+    </linearGradient>
+
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+
+    <filter id="soft">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <clipPath id="clip">
+      <rect width="1200" height="420" rx="28"/>
+    </clipPath>
+
+    <path id="orbitA" d="M600 210 C785 58 1040 118 1040 210 C1040 302 785 362 600 210 C415 58 160 118 160 210 C160 302 415 362 600 210Z"/>
+    <path id="orbitB" d="M600 210 C760 28 970 112 970 210 C970 308 760 392 600 210 C440 28 230 112 230 210 C230 308 440 392 600 210Z"/>
+    <path id="orbitC" d="M600 210 C600 45 875 45 875 210 C875 375 600 375 600 210 C600 45 325 45 325 210 C325 375 600 375 600 210Z"/>
+  </defs>
+
+  <rect width="1200" height="420" rx="28" fill="url(#bg)"/>
+
+  <g clip-path="url(#clip)">
+    <ellipse cx="600" cy="210" rx="360" ry="220" fill="url(#halo)" filter="url(#blur)">
+      <animate attributeName="rx" values="330;390;330" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="190;245;190" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".55;.9;.55" dur="9s" repeatCount="indefinite"/>
+    </ellipse>
+
+    <g fill="none" stroke="url(#line)" stroke-width="1.2" opacity=".65">
+      <use href="#orbitA">
+        <animateTransform attributeName="transform" type="rotate" from="0 600 210" to="360 600 210" dur="26s" repeatCount="indefinite"/>
+      </use>
+      <use href="#orbitB" opacity=".7">
+        <animateTransform attributeName="transform" type="rotate" from="360 600 210" to="0 600 210" dur="20s" repeatCount="indefinite"/>
+      </use>
+      <use href="#orbitC" opacity=".55">
+        <animateTransform attributeName="transform" type="rotate" from="0 600 210" to="-360 600 210" dur="34s" repeatCount="indefinite"/>
+      </use>
+    </g>
+
+    <g fill="none" stroke="#76eaff" stroke-opacity=".22" stroke-width=".8">
+      <ellipse cx="600" cy="210" rx="430" ry="105">
+        <animate attributeName="rx" values="430;470;430" dur="12s" repeatCount="indefinite"/>
+        <animate attributeName="ry" values="105;135;105" dur="12s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="600" cy="210" rx="250" ry="175" transform="rotate(35 600 210)">
+        <animateTransform attributeName="transform" type="rotate" values="35 600 210;395 600 210" dur="18s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="600" cy="210" rx="250" ry="175" transform="rotate(-35 600 210)">
+        <animateTransform attributeName="transform" type="rotate" values="-35 600 210;-395 600 210" dur="23s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+
+    <g fill="#b8ffff" filter="url(#glow)">
+      <circle r="3">
+        <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#orbitA"/>
+        </animateMotion>
+      </circle>
+      <circle r="2.5" fill="#c99cff">
+        <animateMotion dur="5.5s" begin="-2s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#orbitB"/>
+        </animateMotion>
+      </circle>
+      <circle r="2" fill="#ffffff">
+        <animateMotion dur="9s" begin="-5s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#orbitC"/>
+        </animateMotion>
+      </circle>
+      <circle r="2.8" fill="#72f8ff">
+        <animateMotion dur="6.5s" begin="-3s" repeatCount="indefinite" rotate="auto">
+          <mpath href="#orbitC"/>
+        </animateMotion>
+      </circle>
+    </g>
+
+    <g stroke="#65eaff" stroke-opacity=".24" stroke-width="1">
+      <path d="M110 116 Q330 45 515 172"/>
+      <path d="M1090 116 Q870 45 685 172"/>
+      <path d="M110 304 Q330 375 515 248"/>
+      <path d="M1090 304 Q870 375 685 248"/>
+      <path d="M190 210 H460"/>
+      <path d="M1010 210 H740"/>
+    </g>
+
+    <g fill="#8ffaff">
+      <circle cx="110" cy="116" r="2.4"/>
+      <circle cx="1090" cy="116" r="2.4"/>
+      <circle cx="110" cy="304" r="2.4"/>
+      <circle cx="1090" cy="304" r="2.4"/>
+      <circle cx="190" cy="210" r="2"/>
+      <circle cx="1010" cy="210" r="2"/>
+    </g>
+
+    <g transform="translate(600 210)" filter="url(#glow)">
+      <circle r="84" fill="#5ceaff" opacity=".08">
+        <animate attributeName="r" values="72;105;72" dur="6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".2;.05;.2" dur="6s" repeatCount="indefinite"/>
+      </circle>
+
+      <g fill="none" stroke="#9cffff" stroke-width="1.2" opacity=".8">
+        <circle r="66" stroke-dasharray="2 9">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="14s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="54" stroke-dasharray="18 7 2 7">
+          <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="11s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+
+      <path d="M0-43 L37-21 L37 22 L0 43 L-37 22 L-37-21 Z"
+            fill="url(#core)" opacity=".95">
+        <animateTransform attributeName="transform" type="rotate" values="0;120;240;360" dur="12s" repeatCount="indefinite"/>
+      </path>
+
+      <path d="M0-29 L25-14 L25 15 L0 29 L-25 15 L-25-14 Z"
+            fill="#ffffff" opacity=".78">
+        <animateTransform attributeName="transform" type="rotate" values="360;240;120;0" dur="8s" repeatCount="indefinite"/>
+      </path>
+
+      <circle r="12" fill="#ffffff">
+        <animate attributeName="r" values="9;14;9" dur="3.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".65;1;.65" dur="3.5s" repeatCount="indefinite"/>
+      </circle>
+
+      <g stroke="#cfffff" stroke-width="1.4" opacity=".8">
+        <path d="M0-91V-70 M0 70V91 M-91 0H-70 M70 0H91"/>
+        <path d="M-64-64L-49-49 M49 49L64 64 M64-64L49-49 M-49 49L-64 64"/>
+      </g>
+    </g>
+
+    <g fill="#d9ffff">
+      <circle cx="600" cy="44" r="1.5">
+        <animate attributeName="cy" values="44;72;44" dur="5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".2;1;.2" dur="5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="600" cy="376" r="1.5">
+        <animate attributeName="cy" values="376;348;376" dur="5s" begin="-2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".2;1;.2" dur="5s" begin="-2s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <rect x="-20" y="0" width="3" height="420" fill="#b9ffff" opacity=".08" filter="url(#soft)">
+      <animate attributeName="x" values="-20;1220" dur="13s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="418" rx="28" fill="none" stroke="#7defff" stroke-opacity=".18"/>
+</svg>
