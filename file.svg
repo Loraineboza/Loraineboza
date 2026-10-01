@@ -1,245 +1,229 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="Abstract futuristic neural animation">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#050816"/>
-      <stop offset=".5" stop-color="#0b1028"/>
-      <stop offset="1" stop-color="#03050f"/>
+      <stop offset="0" stop-color="#030616"/>
+      <stop offset=".48" stop-color="#0b1230"/>
+      <stop offset="1" stop-color="#17051f"/>
     </linearGradient>
 
-    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
-      <stop stop-color="#5ee7ff" stop-opacity="0"/>
-      <stop offset=".3" stop-color="#5ee7ff"/>
-      <stop offset=".7" stop-color="#a78bfa"/>
-      <stop offset="1" stop-color="#f472b6" stop-opacity="0"/>
-    </linearGradient>
-
-    <radialGradient id="core">
-      <stop stop-color="#fff" stop-opacity="1"/>
-      <stop offset=".18" stop-color="#7dd3fc" stop-opacity=".95"/>
-      <stop offset=".55" stop-color="#8b5cf6" stop-opacity=".3"/>
-      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#72f6ff" stop-opacity=".42"/>
+      <stop offset=".42" stop-color="#7b61ff" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
 
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#51f6ff"/>
+      <stop offset=".48" stop-color="#a879ff"/>
+      <stop offset="1" stop-color="#ff4fc8"/>
+    </linearGradient>
+
+    <linearGradient id="line2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff64cf"/>
+      <stop offset=".5" stop-color="#8b7bff"/>
+      <stop offset="1" stop-color="#53f5ff"/>
+    </linearGradient>
+
     <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge>
-        <feMergeNode in="b"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <filter id="soft" x="-50%" y="-100%" width="200%" height="300%">
-      <feGaussianBlur stdDeviation="10"/>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="18"/>
     </filter>
 
-    <style>
-      .edge {
-        fill:none;
-        stroke:url(#flow);
-        stroke-width:1;
-        stroke-linecap:round;
-        opacity:.18;
-      }
-      .node {
-        fill:#0b1028;
-        stroke:#67e8f9;
-        stroke-width:1.2;
-        filter:url(#glow);
-      }
-      .pulse {
-        fill:#fff;
-        filter:url(#glow);
-      }
-      .orb {
-        fill:none;
-        stroke:#8b5cf6;
-        stroke-width:1;
-        opacity:.25;
-      }
-    </style>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="9"/>
+      <feColorMatrix values="1 0 0 0 0
+                              0 1 0 0 0
+                              0 0 1 0 0
+                              0 0 0 .045 0"/>
+    </filter>
+
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#83a6ff" stroke-opacity=".1"/>
+      <circle cx="0" cy="0" r="1.2" fill="#76efff" opacity=".35"/>
+    </pattern>
+
+    <clipPath id="frame">
+      <rect x="14" y="14" width="1172" height="492" rx="34"/>
+    </clipPath>
+
+    <g id="orb">
+      <circle r="5" fill="#eaffff"/>
+      <circle r="13" fill="none" stroke="#63f4ff" stroke-width="1.5" opacity=".75">
+        <animate attributeName="r" values="8;20;8" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".9;0;.9" dur="3.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="25" fill="none" stroke="#ad72ff" stroke-width="1" opacity=".32">
+        <animate attributeName="r" values="18;34;18" dur="4.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".45;0;.45" dur="4.6s" repeatCount="indefinite"/>
+      </circle>
+    </g>
   </defs>
 
-  <!-- atmospheric field -->
-  <rect width="800" height="220" rx="18" fill="url(#bg)"/>
+  <style>
+    .neural {
+      fill: none;
+      stroke: url(#line);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.4;
+      stroke-dasharray: 5 13;
+      animation: drift 10s linear infinite;
+    }
+    .neural.alt {
+      stroke: url(#line2);
+      stroke-width: 1;
+      stroke-dasharray: 2 18;
+      animation-duration: 14s;
+      animation-direction: reverse;
+    }
+    .pulse {
+      fill: none;
+      stroke: #8df8ff;
+      stroke-linecap: round;
+      stroke-width: 2;
+      stroke-dasharray: 1 160;
+      animation: pulse 4.8s ease-in-out infinite;
+    }
+    .star {
+      fill: #b9fbff;
+      animation: twinkle 3.5s ease-in-out infinite;
+    }
+    .ring {
+      fill: none;
+      stroke: url(#line);
+      stroke-linecap: round;
+      transform-origin: 600px 260px;
+    }
+    @keyframes drift {
+      to { stroke-dashoffset: -180; }
+    }
+    @keyframes pulse {
+      0%, 100% { stroke-dashoffset: 0; opacity: .18; }
+      50% { stroke-dashoffset: -90; opacity: 1; }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: .15; transform: scale(.7); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+    @keyframes breathe {
+      0%, 100% { opacity: .45; }
+      50% { opacity: .95; }
+    }
+  </style>
 
-  <ellipse cx="400" cy="110" rx="290" ry="82"
-           fill="none" stroke="#4f46e5" stroke-width="18"
-           opacity=".045" filter="url(#soft)">
-    <animate attributeName="rx" values="250;320;250" dur="8s" repeatCount="indefinite"/>
-    <animate attributeName="ry" values="65;92;65" dur="8s" repeatCount="indefinite"/>
-  </ellipse>
+  <rect width="1200" height="520" rx="38" fill="#02040e"/>
+  <g clip-path="url(#frame)">
+    <rect x="14" y="14" width="1172" height="492" fill="url(#bg)"/>
+    <rect x="14" y="14" width="1172" height="492" fill="url(#grid)">
+      <animateTransform attributeName="transform" type="translate"
+                        values="0 0;46 46;0 0" dur="18s" repeatCount="indefinite"/>
+    </rect>
 
-  <!-- neural pathways -->
-  <g>
-    <!-- layer 1 -> layer 2 -->
-    <path class="edge" d="M100 48 Q220 35 335 58"/>
-    <path class="edge" d="M100 48 Q220 82 335 58"/>
-    <path class="edge" d="M100 48 Q220 125 335 110"/>
-    <path class="edge" d="M100 110 Q220 55 335 58"/>
-    <path class="edge" d="M100 110 Q220 100 335 110"/>
-    <path class="edge" d="M100 110 Q220 150 335 162"/>
-    <path class="edge" d="M100 172 Q220 95 335 58"/>
-    <path class="edge" d="M100 172 Q220 135 335 110"/>
-    <path class="edge" d="M100 172 Q220 170 335 162"/>
+    <ellipse cx="600" cy="260" rx="370" ry="270" fill="url(#halo)" filter="url(#softGlow)">
+      <animate attributeName="rx" values="330;420;330" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="220;295;220" dur="9s" repeatCount="indefinite"/>
+    </ellipse>
 
-    <!-- layer 2 -> core -->
-    <path class="edge" d="M335 58 Q400 75 400 110"/>
-    <path class="edge" d="M335 110 Q400 110 400 110"/>
-    <path class="edge" d="M335 162 Q400 145 400 110"/>
-
-    <!-- core -> layer 3 -->
-    <path class="edge" d="M400 110 Q470 75 535 58"/>
-    <path class="edge" d="M400 110 Q470 110 535 110"/>
-    <path class="edge" d="M400 110 Q470 145 535 162"/>
-
-    <!-- layer 3 -> layer 4 -->
-    <path class="edge" d="M535 58 Q650 35 700 48"/>
-    <path class="edge" d="M535 58 Q650 82 700 110"/>
-    <path class="edge" d="M535 110 Q650 55 700 48"/>
-    <path class="edge" d="M535 110 Q650 100 700 110"/>
-    <path class="edge" d="M535 110 Q650 150 700 172"/>
-    <path class="edge" d="M535 162 Q650 95 700 48"/>
-    <path class="edge" d="M535 162 Q650 135 700 110"/>
-    <path class="edge" d="M535 162 Q650 170 700 172"/>
-  </g>
-
-  <!-- travelling synaptic pulses -->
-  <g class="pulse">
-    <circle r="2">
-      <animateMotion dur="3.8s" repeatCount="indefinite" path="M100 48 Q220 35 335 58"/>
-    </circle>
-    <circle r="1.7">
-      <animateMotion dur="3.1s" begin=".7s" repeatCount="indefinite" path="M100 110 Q220 100 335 110"/>
-    </circle>
-    <circle r="2">
-      <animateMotion dur="4.2s" begin="1.4s" repeatCount="indefinite" path="M100 172 Q220 135 335 110"/>
-    </circle>
-    <circle r="2.2">
-      <animateMotion dur="2.5s" begin=".2s" repeatCount="indefinite" path="M335 58 Q400 75 400 110"/>
-    </circle>
-    <circle r="2">
-      <animateMotion dur="2.9s" begin="1s" repeatCount="indefinite" path="M335 162 Q400 145 400 110"/>
-    </circle>
-    <circle r="2.3">
-      <animateMotion dur="3s" begin=".5s" repeatCount="indefinite" path="M400 110 Q470 75 535 58"/>
-    </circle>
-    <circle r="1.8">
-      <animateMotion dur="3.6s" begin="1.8s" repeatCount="indefinite" path="M400 110 Q470 145 535 162"/>
-    </circle>
-    <circle r="2">
-      <animateMotion dur="3.5s" begin="1.1s" repeatCount="indefinite" path="M535 58 Q650 82 700 110"/>
-    </circle>
-    <circle r="1.7">
-      <animateMotion dur="4s" begin=".4s" repeatCount="indefinite" path="M535 162 Q650 135 700 110"/>
-    </circle>
-  </g>
-
-  <!-- subtle data streams -->
-  <g fill="none" stroke="url(#flow)" stroke-width=".7" opacity=".18">
-    <path d="M25 92 C150 20 230 200 350 95 S590 25 775 120">
-      <animate attributeName="d"
-        values="M25 92 C150 20 230 200 350 95 S590 25 775 120;
-                M25 120 C150 200 230 20 350 125 S590 195 775 92;
-                M25 92 C150 20 230 200 350 95 S590 25 775 120"
-        dur="11s" repeatCount="indefinite"/>
-    </path>
-    <path d="M25 135 C150 210 240 30 360 125 S590 190 775 82">
-      <animate attributeName="d"
-        values="M25 135 C150 210 240 30 360 125 S590 190 775 82;
-                M25 82 C150 30 240 190 360 95 S590 30 775 135;
-                M25 135 C150 210 240 30 360 125 S590 190 775 82"
-        dur="14s" repeatCount="indefinite"/>
-    </path>
-  </g>
-
-  <!-- nodes -->
-  <g>
-    <g>
-      <circle class="node" cx="100" cy="48" r="5"/>
-      <circle class="node" cx="100" cy="110" r="5"/>
-      <circle class="node" cx="100" cy="172" r="5"/>
-      <circle class="node" cx="335" cy="58" r="6"/>
-      <circle class="node" cx="335" cy="110" r="6"/>
-      <circle class="node" cx="335" cy="162" r="6"/>
-      <circle class="node" cx="535" cy="58" r="6"/>
-      <circle class="node" cx="535" cy="110" r="6"/>
-      <circle class="node" cx="535" cy="162" r="6"/>
-      <circle class="node" cx="700" cy="48" r="5"/>
-      <circle class="node" cx="700" cy="110" r="5"/>
-      <circle class="node" cx="700" cy="172" r="5"/>
+    <g fill="#b5faff">
+      <circle class="star" cx="86" cy="92" r="1.5"/>
+      <circle class="star" cx="172" cy="390" r="1" style="animation-delay:-1.2s"/>
+      <circle class="star" cx="268" cy="72" r="1.3" style="animation-delay:-2.1s"/>
+      <circle class="star" cx="355" cy="448" r="1.1" style="animation-delay:-.5s"/>
+      <circle class="star" cx="462" cy="112" r="1" style="animation-delay:-2.7s"/>
+      <circle class="star" cx="748" cy="88" r="1.3" style="animation-delay:-1.8s"/>
+      <circle class="star" cx="842" cy="430" r="1.1" style="animation-delay:-.9s"/>
+      <circle class="star" cx="957" cy="118" r="1.4" style="animation-delay:-2.4s"/>
+      <circle class="star" cx="1084" cy="364" r="1.2" style="animation-delay:-1.5s"/>
+      <circle class="star" cx="1128" cy="92" r=".9" style="animation-delay:-.3s"/>
     </g>
 
-    <!-- breathing nodes -->
-    <g fill="none" stroke="#67e8f9">
-      <circle cx="100" cy="48" r="8" opacity=".15">
-        <animate attributeName="r" values="7;15;7" dur="3s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".2;0;.2" dur="3s" repeatCount="indefinite"/>
+    <g opacity=".8" filter="url(#glow)">
+      <path class="neural" d="M-40 182 C130 40 210 390 382 248 S655 42 812 236 S1040 450 1245 258"/>
+      <path class="neural alt" d="M-50 350 C120 470 185 88 370 260 S626 454 790 270 S1060 60 1248 190"/>
+      <path class="neural" d="M65 520 C210 350 270 352 390 172 S642 110 760 350 S1010 418 1160 42"/>
+      <path class="neural alt" d="M85 -30 C250 150 330 138 432 340 S665 452 810 180 S1010 104 1120 540"/>
+      <path class="neural" d="M-20 78 C180 220 260 206 430 72 S690 110 830 420 S1050 370 1220 120"/>
+      <path class="neural alt" d="M-30 450 C160 280 280 490 440 380 S650 40 870 120 S1040 320 1230 420"/>
+    </g>
+
+    <g opacity=".75">
+      <path class="pulse" d="M-40 182 C130 40 210 390 382 248 S655 42 812 236 S1040 450 1245 258"/>
+      <path class="pulse" d="M65 520 C210 350 270 352 390 172 S642 110 760 350 S1010 418 1160 42"
+            style="animation-delay:-2.1s"/>
+      <path class="pulse" d="M-30 450 C160 280 280 490 440 380 S650 40 870 120 S1040 320 1230 420"
+            style="animation-delay:-3.4s"/>
+    </g>
+
+    <g class="ring" opacity=".55">
+      <ellipse cx="600" cy="260" rx="278" ry="104" stroke-width="1.5">
+        <animateTransform attributeName="transform" type="rotate"
+                          values="0 600 260;360 600 260" dur="19s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="600" cy="260" rx="278" ry="104" stroke-width="1">
+        <animateTransform attributeName="transform" type="rotate"
+                          values="70 600 260;-290 600 260" dur="23s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="600" cy="260" rx="278" ry="104" stroke-width="1">
+        <animateTransform attributeName="transform" type="rotate"
+                          values="140 600 260;-220 600 260" dur="27s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+
+    <g opacity=".42" filter="url(#glow)">
+      <circle cx="600" cy="260" r="122" fill="none" stroke="#75efff" stroke-width="1">
+        <animate attributeName="r" values="108;142;108" dur="6s" repeatCount="indefinite"/>
       </circle>
-      <circle cx="335" cy="110" r="9" opacity=".18">
-        <animate attributeName="r" values="8;18;8" dur="3.7s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".2;0;.2" dur="3.7s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="535" cy="110" r="9" opacity=".18">
-        <animate attributeName="r" values="8;18;8" dur="4.1s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".2;0;.2" dur="4.1s" repeatCount="indefinite"/>
+      <circle cx="600" cy="260" r="155" fill="none" stroke="#d168ff" stroke-width="1">
+        <animate attributeName="r" values="160;128;160" dur="7.5s" repeatCount="indefinite"/>
       </circle>
     </g>
-  </g>
 
-  <!-- central intelligence core -->
-  <g>
-    <circle cx="400" cy="110" r="42" fill="url(#core)" opacity=".16">
-      <animate attributeName="r" values="32;48;32" dur="5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values=".12;.24;.12" dur="5s" repeatCount="indefinite"/>
-    </circle>
+    <g filter="url(#glow)">
+      <use href="#orb" x="318" y="205">
+        <animateTransform attributeName="transform" type="translate"
+                          values="0 0;18 -14;0 0" dur="6s" repeatCount="indefinite"/>
+      </use>
+      <use href="#orb" x="874" y="186">
+        <animateTransform attributeName="transform" type="translate"
+                          values="0 0;-16 18;0 0" dur="7s" repeatCount="indefinite"/>
+      </use>
+      <use href="#orb" x="792" y="363">
+        <animateTransform attributeName="transform" type="translate"
+                          values="0 0;13 12;0 0" dur="5.4s" repeatCount="indefinite"/>
+      </use>
+      <use href="#orb" x="408" y="350">
+        <animateTransform attributeName="transform" type="translate"
+                          values="0 0;-14 -10;0 0" dur="6.8s" repeatCount="indefinite"/>
+      </use>
+    </g>
 
-    <circle cx="400" cy="110" r="17" fill="url(#core)" filter="url(#glow)">
-      <animate attributeName="r" values="13;19;13" dur="3.5s" repeatCount="indefinite"/>
-    </circle>
+    <g transform="translate(600 260)" filter="url(#glow)">
+      <circle r="42" fill="#081a38" stroke="#9cfaff" stroke-width="2">
+        <animate attributeName="r" values="38;46;38" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="19" fill="#d9ffff" opacity=".95">
+        <animate attributeName="r" values="14;23;14" dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".72;1;.72" dur="3.2s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="64" fill="none" stroke="#54efff" stroke-width="1" stroke-dasharray="2 10">
+        <animateTransform attributeName="transform" type="rotate"
+                          values="0;360" dur="8s" repeatCount="indefinite"/>
+      </circle>
+      <circle r="78" fill="none" stroke="#d56cff" stroke-width="1" stroke-dasharray="1 16">
+        <animateTransform attributeName="transform" type="rotate"
+                          values="360;0" dur="11s" repeatCount="indefinite"/>
+      </circle>
+    </g>
 
-    <circle class="orb" cx="400" cy="110" r="28">
-      <animateTransform attributeName="transform"
-        type="rotate" from="0 400 110" to="360 400 110"
-        dur="7s" repeatCount="indefinite"/>
-    </circle>
-
-    <circle class="orb" cx="400" cy="110" r="35"
-            stroke="#67e8f9" stroke-dasharray="2 9">
-      <animateTransform attributeName="transform"
-        type="rotate" from="360 400 110" to="0 400 110"
-        dur="10s" repeatCount="indefinite"/>
-    </circle>
-
-    <circle cx="400" cy="110" r="4" fill="#fff" filter="url(#glow)">
-      <animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-
-  <!-- orbiting particles -->
-  <g fill="#a78bfa" filter="url(#glow)">
-    <circle r="2">
-      <animateMotion dur="6s" repeatCount="indefinite"
-        path="M400 75 A35 35 0 1 1 399.9 75"/>
-    </circle>
-    <circle r="1.5" fill="#67e8f9">
-      <animateMotion dur="4.5s" begin="1s" repeatCount="indefinite"
-        path="M400 145 A35 35 0 1 1 400.1 145"/>
-    </circle>
-  </g>
-
-  <!-- tiny ambient particles -->
-  <g fill="#67e8f9">
-    <circle cx="55" cy="28" r="1">
-      <animate attributeName="opacity" values=".1;.8;.1" dur="2.8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="180" cy="190" r="1">
-      <animate attributeName="opacity" values=".8;.1;.8" dur="3.6s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="620" cy="25" r="1">
-      <animate attributeName="opacity" values=".1;.8;.1" dur="4s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="755" cy="190" r="1">
-      <animate attributeName="opacity" values=".8;.1;.8" dur="3.2s" repeatCount="indefinite"/>
-    </circle>
+    <rect x="14" y="14" width="1172" height="492" fill="#fff" filter="url(#grain)" opacity=".12"/>
+    <rect x="14" y="14" width="1172" height="492" rx="34" fill="none" stroke="#7ceeff" stroke-opacity=".32"/>
+    <rect x="22" y="22" width="1156" height="476" rx="28" fill="none" stroke="#bf71ff" stroke-opacity=".16"/>
   </g>
 </svg>
