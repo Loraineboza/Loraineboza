@@ -1,30 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="Abstract futuristic neural animation">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-label="Abstract 3D futuristic neural animation">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#030616"/>
-      <stop offset=".48" stop-color="#0b1230"/>
-      <stop offset="1" stop-color="#17051f"/>
+      <stop offset="0" stop-color="#02030d"/>
+      <stop offset=".45" stop-color="#0a1230"/>
+      <stop offset="1" stop-color="#21051f"/>
     </linearGradient>
 
-    <radialGradient id="halo">
-      <stop offset="0" stop-color="#72f6ff" stop-opacity=".42"/>
-      <stop offset=".42" stop-color="#7b61ff" stop-opacity=".16"/>
+    <radialGradient id="coreGlow">
+      <stop offset="0" stop-color="#dfffff" stop-opacity="1"/>
+      <stop offset=".15" stop-color="#61f6ff" stop-opacity=".95"/>
+      <stop offset=".42" stop-color="#876bff" stop-opacity=".35"/>
       <stop offset="1" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
 
-    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#51f6ff"/>
-      <stop offset=".48" stop-color="#a879ff"/>
-      <stop offset="1" stop-color="#ff4fc8"/>
+    <radialGradient id="atmosphere">
+      <stop offset="0" stop-color="#65f8ff" stop-opacity=".3"/>
+      <stop offset=".45" stop-color="#9a62ff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfffff"/>
+      <stop offset=".3" stop-color="#4df4ff"/>
+      <stop offset=".7" stop-color="#637dff"/>
+      <stop offset="1" stop-color="#ee5ad7"/>
     </linearGradient>
 
-    <linearGradient id="line2" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ff64cf"/>
-      <stop offset=".5" stop-color="#8b7bff"/>
-      <stop offset="1" stop-color="#53f5ff"/>
+    <linearGradient id="violet" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff72d4"/>
+      <stop offset=".45" stop-color="#9a68ff"/>
+      <stop offset="1" stop-color="#4defff"/>
     </linearGradient>
 
-    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+    <filter id="glow" x="-150%" y="-150%" width="400%" height="400%">
       <feGaussianBlur stdDeviation="5" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
@@ -32,198 +40,332 @@
       </feMerge>
     </filter>
 
-    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="18"/>
+    <filter id="bigGlow" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="24"/>
     </filter>
 
     <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="9"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7"/>
       <feColorMatrix values="1 0 0 0 0
                               0 1 0 0 0
                               0 0 1 0 0
                               0 0 0 .045 0"/>
     </filter>
 
-    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
-      <path d="M46 0H0V46" fill="none" stroke="#83a6ff" stroke-opacity=".1"/>
-      <circle cx="0" cy="0" r="1.2" fill="#76efff" opacity=".35"/>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" fill="none" stroke="#7f9dff" stroke-opacity=".1"/>
+      <circle cx="0" cy="0" r="1" fill="#7cf5ff" opacity=".3"/>
     </pattern>
 
     <clipPath id="frame">
-      <rect x="14" y="14" width="1172" height="492" rx="34"/>
+      <rect x="14" y="14" width="1172" height="592" rx="38"/>
     </clipPath>
 
-    <g id="orb">
-      <circle r="5" fill="#eaffff"/>
-      <circle r="13" fill="none" stroke="#63f4ff" stroke-width="1.5" opacity=".75">
-        <animate attributeName="r" values="8;20;8" dur="3.2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".9;0;.9" dur="3.2s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="25" fill="none" stroke="#ad72ff" stroke-width="1" opacity=".32">
-        <animate attributeName="r" values="18;34;18" dur="4.6s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".45;0;.45" dur="4.6s" repeatCount="indefinite"/>
+    <g id="particle">
+      <circle r="3.5" fill="#eaffff"/>
+      <circle r="11" fill="none" stroke="#62f6ff" stroke-width="1.4">
+        <animate attributeName="r" values="7;19;7" dur="3.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".9;0;.9" dur="3.6s" repeatCount="indefinite"/>
       </circle>
     </g>
   </defs>
 
   <style>
-    .neural {
+    .data-line {
       fill: none;
-      stroke: url(#line);
       stroke-linecap: round;
       stroke-linejoin: round;
-      stroke-width: 1.4;
-      stroke-dasharray: 5 13;
-      animation: drift 10s linear infinite;
+      stroke-width: 1.5;
+      stroke-dasharray: 4 14;
+      animation: flow 11s linear infinite;
     }
-    .neural.alt {
-      stroke: url(#line2);
-      stroke-width: 1;
-      stroke-dasharray: 2 18;
-      animation-duration: 14s;
+
+    .data-line.alt {
+      stroke-dasharray: 2 17;
+      animation-duration: 15s;
       animation-direction: reverse;
     }
-    .pulse {
+
+    .energy {
       fill: none;
-      stroke: #8df8ff;
+      stroke: #a8ffff;
       stroke-linecap: round;
       stroke-width: 2;
-      stroke-dasharray: 1 160;
-      animation: pulse 4.8s ease-in-out infinite;
+      stroke-dasharray: 1 180;
+      animation: energy 5.2s ease-in-out infinite;
     }
-    .star {
-      fill: #b9fbff;
-      animation: twinkle 3.5s ease-in-out infinite;
-    }
-    .ring {
+
+    .orbit {
       fill: none;
-      stroke: url(#line);
       stroke-linecap: round;
-      transform-origin: 600px 260px;
+      transform-origin: 600px 306px;
     }
-    @keyframes drift {
-      to { stroke-dashoffset: -180; }
+
+    .star {
+      fill: #c7ffff;
+      animation: twinkle 4s ease-in-out infinite;
+      transform-box: fill-box;
+      transform-origin: center;
     }
-    @keyframes pulse {
-      0%, 100% { stroke-dashoffset: 0; opacity: .18; }
-      50% { stroke-dashoffset: -90; opacity: 1; }
+
+    @keyframes flow {
+      to { stroke-dashoffset: -210; }
     }
+
+    @keyframes energy {
+      0%, 100% { stroke-dashoffset: 0; opacity: .12; }
+      50% { stroke-dashoffset: -120; opacity: .95; }
+    }
+
     @keyframes twinkle {
-      0%, 100% { opacity: .15; transform: scale(.7); }
-      50% { opacity: 1; transform: scale(1.5); }
+      0%, 100% { opacity: .15; transform: scale(.65); }
+      50% { opacity: 1; transform: scale(1.6); }
     }
+
     @keyframes breathe {
-      0%, 100% { opacity: .45; }
-      50% { opacity: .95; }
+      0%, 100% { opacity: .38; }
+      50% { opacity: .9; }
     }
   </style>
 
-  <rect width="1200" height="520" rx="38" fill="#02040e"/>
+  <rect width="1200" height="620" rx="42" fill="#01020a"/>
+
   <g clip-path="url(#frame)">
-    <rect x="14" y="14" width="1172" height="492" fill="url(#bg)"/>
-    <rect x="14" y="14" width="1172" height="492" fill="url(#grid)">
-      <animateTransform attributeName="transform" type="translate"
-                        values="0 0;46 46;0 0" dur="18s" repeatCount="indefinite"/>
+    <rect x="14" y="14" width="1172" height="592" fill="url(#bg)"/>
+    <rect x="14" y="14" width="1172" height="592" fill="url(#grid)">
+      <animateTransform attributeName="transform"
+                        type="translate"
+                        values="0 0;44 44;0 0"
+                        dur="20s"
+                        repeatCount="indefinite"/>
     </rect>
 
-    <ellipse cx="600" cy="260" rx="370" ry="270" fill="url(#halo)" filter="url(#softGlow)">
-      <animate attributeName="rx" values="330;420;330" dur="9s" repeatCount="indefinite"/>
-      <animate attributeName="ry" values="220;295;220" dur="9s" repeatCount="indefinite"/>
+    <ellipse cx="600" cy="306" rx="440" ry="270"
+             fill="url(#atmosphere)"
+             filter="url(#bigGlow)">
+      <animate attributeName="rx" values="390;470;390" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="230;310;230" dur="10s" repeatCount="indefinite"/>
     </ellipse>
 
-    <g fill="#b5faff">
-      <circle class="star" cx="86" cy="92" r="1.5"/>
-      <circle class="star" cx="172" cy="390" r="1" style="animation-delay:-1.2s"/>
-      <circle class="star" cx="268" cy="72" r="1.3" style="animation-delay:-2.1s"/>
-      <circle class="star" cx="355" cy="448" r="1.1" style="animation-delay:-.5s"/>
-      <circle class="star" cx="462" cy="112" r="1" style="animation-delay:-2.7s"/>
-      <circle class="star" cx="748" cy="88" r="1.3" style="animation-delay:-1.8s"/>
-      <circle class="star" cx="842" cy="430" r="1.1" style="animation-delay:-.9s"/>
-      <circle class="star" cx="957" cy="118" r="1.4" style="animation-delay:-2.4s"/>
-      <circle class="star" cx="1084" cy="364" r="1.2" style="animation-delay:-1.5s"/>
-      <circle class="star" cx="1128" cy="92" r=".9" style="animation-delay:-.3s"/>
+    <g>
+      <circle class="star" cx="90" cy="112" r="1.4"/>
+      <circle class="star" cx="178" cy="468" r="1.1" style="animation-delay:-1.2s"/>
+      <circle class="star" cx="264" cy="82" r="1.2" style="animation-delay:-2.5s"/>
+      <circle class="star" cx="370" cy="530" r="1" style="animation-delay:-.8s"/>
+      <circle class="star" cx="454" cy="128" r="1.1" style="animation-delay:-3s"/>
+      <circle class="star" cx="748" cy="94" r="1.3" style="animation-delay:-1.8s"/>
+      <circle class="star" cx="842" cy="510" r="1" style="animation-delay:-.6s"/>
+      <circle class="star" cx="966" cy="132" r="1.4" style="animation-delay:-2.2s"/>
+      <circle class="star" cx="1094" cy="422" r="1.2" style="animation-delay:-1.5s"/>
+      <circle class="star" cx="1140" cy="88" r=".9" style="animation-delay:-.3s"/>
     </g>
 
-    <g opacity=".8" filter="url(#glow)">
-      <path class="neural" d="M-40 182 C130 40 210 390 382 248 S655 42 812 236 S1040 450 1245 258"/>
-      <path class="neural alt" d="M-50 350 C120 470 185 88 370 260 S626 454 790 270 S1060 60 1248 190"/>
-      <path class="neural" d="M65 520 C210 350 270 352 390 172 S642 110 760 350 S1010 418 1160 42"/>
-      <path class="neural alt" d="M85 -30 C250 150 330 138 432 340 S665 452 810 180 S1010 104 1120 540"/>
-      <path class="neural" d="M-20 78 C180 220 260 206 430 72 S690 110 830 420 S1050 370 1220 120"/>
-      <path class="neural alt" d="M-30 450 C160 280 280 490 440 380 S650 40 870 120 S1040 320 1230 420"/>
+    <!-- Дальняя 3D-сетка -->
+    <g opacity=".32" fill="none" stroke="#65dfff">
+      <path d="M50 520 Q600 360 1150 520" stroke-width="1"/>
+      <path d="M70 550 Q600 390 1130 550" stroke-width="1"/>
+      <path d="M95 580 Q600 420 1105 580" stroke-width="1"/>
+      <path d="M210 420 Q600 350 990 420" stroke-width="1"/>
+      <path d="M160 470 Q600 370 1040 470" stroke-width="1"/>
+      <path d="M250 380 Q600 325 950 380" stroke-width="1"/>
+      <path d="M310 340 Q600 305 890 340" stroke-width="1"/>
+    </g>
+
+    <g opacity=".26" fill="none" stroke="#b26dff" stroke-width="1">
+      <path d="M120 100 Q600 260 1080 100"/>
+      <path d="M180 62 Q600 230 1020 62"/>
+      <path d="M260 40 Q600 190 940 40"/>
+    </g>
+
+    <!-- Потоки вокруг ядра -->
+    <g filter="url(#glow)">
+      <path class="data-line" stroke="url(#cyan)"
+            d="M-80 250 C120 42 258 520 430 290 S710 52 890 280 S1080 530 1280 250"/>
+      <path class="data-line alt" stroke="url(#violet)"
+            d="M-60 420 C130 570 270 80 450 270 S690 550 850 290 S1080 60 1260 190"/>
+      <path class="data-line" stroke="url(#cyan)"
+            d="M100 650 C230 410 290 420 410 175 S655 80 770 430 S1010 500 1140 -30"/>
+      <path class="data-line alt" stroke="url(#violet)"
+            d="M60 -40 C245 180 330 125 455 390 S665 500 815 180 S1030 110 1160 660"/>
+      <path class="data-line" stroke="url(#cyan)"
+            d="M-40 120 C170 285 278 220 440 80 S700 120 840 455 S1060 400 1240 110"/>
     </g>
 
     <g opacity=".75">
-      <path class="pulse" d="M-40 182 C130 40 210 390 382 248 S655 42 812 236 S1040 450 1245 258"/>
-      <path class="pulse" d="M65 520 C210 350 270 352 390 172 S642 110 760 350 S1010 418 1160 42"
-            style="animation-delay:-2.1s"/>
-      <path class="pulse" d="M-30 450 C160 280 280 490 440 380 S650 40 870 120 S1040 320 1230 420"
-            style="animation-delay:-3.4s"/>
+      <path class="energy"
+            d="M-80 250 C120 42 258 520 430 290 S710 52 890 280 S1080 530 1280 250"/>
+      <path class="energy"
+            d="M100 650 C230 410 290 420 410 175 S655 80 770 430 S1010 500 1140 -30"
+            style="animation-delay:-2.2s"/>
+      <path class="energy"
+            d="M-40 120 C170 285 278 220 440 80 S700 120 840 455 S1060 400 1240 110"
+            style="animation-delay:-3.5s"/>
     </g>
 
-    <g class="ring" opacity=".55">
-      <ellipse cx="600" cy="260" rx="278" ry="104" stroke-width="1.5">
-        <animateTransform attributeName="transform" type="rotate"
-                          values="0 600 260;360 600 260" dur="19s" repeatCount="indefinite"/>
+    <!-- Перспективные орбиты -->
+    <g class="orbit" opacity=".72">
+      <ellipse cx="600" cy="306" rx="350" ry="122"
+               stroke="url(#cyan)" stroke-width="1.6">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="0 600 306;360 600 306"
+                          dur="20s"
+                          repeatCount="indefinite"/>
       </ellipse>
-      <ellipse cx="600" cy="260" rx="278" ry="104" stroke-width="1">
-        <animateTransform attributeName="transform" type="rotate"
-                          values="70 600 260;-290 600 260" dur="23s" repeatCount="indefinite"/>
+
+      <ellipse cx="600" cy="306" rx="350" ry="122"
+               stroke="url(#violet)" stroke-width="1">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="65 600 306;-295 600 306"
+                          dur="24s"
+                          repeatCount="indefinite"/>
       </ellipse>
-      <ellipse cx="600" cy="260" rx="278" ry="104" stroke-width="1">
-        <animateTransform attributeName="transform" type="rotate"
-                          values="140 600 260;-220 600 260" dur="27s" repeatCount="indefinite"/>
+
+      <ellipse cx="600" cy="306" rx="350" ry="122"
+               stroke="url(#cyan)" stroke-width="1">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="125 600 306;-235 600 306"
+                          dur="28s"
+                          repeatCount="indefinite"/>
+      </ellipse>
+
+      <ellipse cx="600" cy="306" rx="350" ry="122"
+               stroke="#eaa0ff"
+               stroke-opacity=".5"
+               stroke-width="1">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="180 600 306;-180 600 306"
+                          dur="32s"
+                          repeatCount="indefinite"/>
       </ellipse>
     </g>
 
-    <g opacity=".42" filter="url(#glow)">
-      <circle cx="600" cy="260" r="122" fill="none" stroke="#75efff" stroke-width="1">
-        <animate attributeName="r" values="108;142;108" dur="6s" repeatCount="indefinite"/>
-      </circle>
-      <circle cx="600" cy="260" r="155" fill="none" stroke="#d168ff" stroke-width="1">
-        <animate attributeName="r" values="160;128;160" dur="7.5s" repeatCount="indefinite"/>
-      </circle>
+    <!-- Объёмные кольца -->
+    <g transform="translate(600 306)" fill="none" filter="url(#glow)">
+      <ellipse rx="175" ry="64" stroke="#62f5ff" stroke-width="2" opacity=".8">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="0;360"
+                          dur="12s"
+                          repeatCount="indefinite"/>
+      </ellipse>
+
+      <ellipse rx="205" ry="75" stroke="#bb6dff" stroke-width="1.4" opacity=".7">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="360;0"
+                          dur="16s"
+                          repeatCount="indefinite"/>
+      </ellipse>
+
+      <ellipse rx="238" ry="88" stroke="#66eaff" stroke-width="1" opacity=".55">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="0;360"
+                          dur="22s"
+                          repeatCount="indefinite"/>
+      </ellipse>
     </g>
 
+    <!-- Парящие узлы в глубине -->
     <g filter="url(#glow)">
-      <use href="#orb" x="318" y="205">
-        <animateTransform attributeName="transform" type="translate"
-                          values="0 0;18 -14;0 0" dur="6s" repeatCount="indefinite"/>
+      <use href="#particle" x="316" y="212">
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          values="0 0;22 -18;0 0"
+                          dur="6s"
+                          repeatCount="indefinite"/>
       </use>
-      <use href="#orb" x="874" y="186">
-        <animateTransform attributeName="transform" type="translate"
-                          values="0 0;-16 18;0 0" dur="7s" repeatCount="indefinite"/>
+
+      <use href="#particle" x="874" y="190">
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          values="0 0;-20 16;0 0"
+                          dur="7s"
+                          repeatCount="indefinite"/>
       </use>
-      <use href="#orb" x="792" y="363">
-        <animateTransform attributeName="transform" type="translate"
-                          values="0 0;13 12;0 0" dur="5.4s" repeatCount="indefinite"/>
+
+      <use href="#particle" x="790" y="426">
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          values="0 0;16 12;0 0"
+                          dur="5.5s"
+                          repeatCount="indefinite"/>
       </use>
-      <use href="#orb" x="408" y="350">
-        <animateTransform attributeName="transform" type="translate"
-                          values="0 0;-14 -10;0 0" dur="6.8s" repeatCount="indefinite"/>
+
+      <use href="#particle" x="408" y="402">
+        <animateTransform attributeName="transform"
+                          type="translate"
+                          values="0 0;-16 -12;0 0"
+                          dur="6.8s"
+                          repeatCount="indefinite"/>
       </use>
     </g>
 
-    <g transform="translate(600 260)" filter="url(#glow)">
-      <circle r="42" fill="#081a38" stroke="#9cfaff" stroke-width="2">
-        <animate attributeName="r" values="38;46;38" dur="4s" repeatCount="indefinite"/>
+    <!-- Центральная объёмная сфера -->
+    <g transform="translate(600 306)" filter="url(#glow)">
+      <circle r="142" fill="url(#coreGlow)" opacity=".58">
+        <animate attributeName="r" values="120;158;120" dur="6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".38;.72;.38" dur="6s" repeatCount="indefinite"/>
       </circle>
-      <circle r="19" fill="#d9ffff" opacity=".95">
-        <animate attributeName="r" values="14;23;14" dur="3.2s" repeatCount="indefinite"/>
+
+      <circle r="94" fill="#071536" stroke="#a8ffff" stroke-width="2">
+        <animate attributeName="r" values="88;101;88" dur="5s" repeatCount="indefinite"/>
+      </circle>
+
+      <ellipse rx="94" ry="34" fill="none" stroke="#65f6ff" stroke-width="1.5" opacity=".75">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="0;360"
+                          dur="9s"
+                          repeatCount="indefinite"/>
+      </ellipse>
+
+      <ellipse rx="94" ry="34" fill="none" stroke="#ef73da" stroke-width="1.2" opacity=".75">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="60;-300"
+                          dur="11s"
+                          repeatCount="indefinite"/>
+      </ellipse>
+
+      <ellipse rx="94" ry="34" fill="none" stroke="#a475ff" stroke-width="1" opacity=".7">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="120;-240"
+                          dur="13s"
+                          repeatCount="indefinite"/>
+      </ellipse>
+
+      <circle r="51" fill="#0b2450" stroke="#70f7ff" stroke-width="2">
+        <animate attributeName="r" values="46;56;46" dur="4s" repeatCount="indefinite"/>
+      </circle>
+
+      <circle r="29" fill="#e9ffff">
+        <animate attributeName="r" values="22;34;22" dur="3.2s" repeatCount="indefinite"/>
         <animate attributeName="opacity" values=".72;1;.72" dur="3.2s" repeatCount="indefinite"/>
       </circle>
-      <circle r="64" fill="none" stroke="#54efff" stroke-width="1" stroke-dasharray="2 10">
-        <animateTransform attributeName="transform" type="rotate"
-                          values="0;360" dur="8s" repeatCount="indefinite"/>
-      </circle>
-      <circle r="78" fill="none" stroke="#d56cff" stroke-width="1" stroke-dasharray="1 16">
-        <animateTransform attributeName="transform" type="rotate"
-                          values="360;0" dur="11s" repeatCount="indefinite"/>
+
+      <circle r="118" fill="none" stroke="#d36dff" stroke-width="1"
+              stroke-dasharray="2 15" opacity=".72">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="360;0"
+                          dur="10s"
+                          repeatCount="indefinite"/>
       </circle>
     </g>
 
-    <rect x="14" y="14" width="1172" height="492" fill="#fff" filter="url(#grain)" opacity=".12"/>
-    <rect x="14" y="14" width="1172" height="492" rx="34" fill="none" stroke="#7ceeff" stroke-opacity=".32"/>
-    <rect x="22" y="22" width="1156" height="476" rx="28" fill="none" stroke="#bf71ff" stroke-opacity=".16"/>
+    <rect x="14" y="14" width="1172" height="592"
+          fill="#fff" filter="url(#grain)" opacity=".12"/>
+
+    <rect x="14" y="14" width="1172" height="592"
+          rx="38" fill="none" stroke="#7ceeff" stroke-opacity=".34"/>
+
+    <rect x="23" y="23" width="1154" height="574"
+          rx="30" fill="none" stroke="#c16eff" stroke-opacity=".16"/>
   </g>
 </svg>
