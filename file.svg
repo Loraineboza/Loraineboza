@@ -1,141 +1,359 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450" width="100%" height="100%">
   <defs>
-    <!-- Градиенты для трассы -->
-    <linearGradient id="trackGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#16213e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f3460;stop-opacity:1" />
+    <!-- Background Gradients -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2c1a1d"/>
+      <stop offset="35%" stop-color="#6e3b30"/>
+      <stop offset="65%" stop-color="#c9733e"/>
+      <stop offset="85%" stop-color="#dfa46a"/>
+      <stop offset="100%" stop-color="#ebd8b0"/>
     </linearGradient>
-    
-    <!-- Градиент для машины -->
-    <linearGradient id="carGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#ff6b6b;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#e94560;stop-opacity:1" />
+
+    <radialGradient id="sunGlow" cx="72%" cy="22%" r="60%">
+      <stop offset="0%" stop-color="#fff5cc" stop-opacity="0.9"/>
+      <stop offset="20%" stop-color="#ffb347" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#d35400" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#d35400" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="trackGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#18191c"/>
+      <stop offset="35%" stop-color="#23262b"/>
+      <stop offset="70%" stop-color="#1c1d21"/>
+      <stop offset="100%" stop-color="#0e0f12"/>
     </linearGradient>
-    
-    <!-- Свечение -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+
+    <!-- Car Shaders -->
+    <linearGradient id="ferrariRed" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#910b14"/>
+      <stop offset="30%" stop-color="#e10600"/>
+      <stop offset="70%" stop-color="#ff2a1a"/>
+      <stop offset="100%" stop-color="#8a0810"/>
+    </linearGradient>
+
+    <linearGradient id="mercSilver" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#151719"/>
+      <stop offset="25%" stop-color="#2d3238"/>
+      <stop offset="50%" stop-color="#00d2be"/>
+      <stop offset="75%" stop-color="#7f8c8d"/>
+      <stop offset="100%" stop-color="#111215"/>
+    </linearGradient>
+
+    <linearGradient id="tireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2b2b"/>
+      <stop offset="50%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#050505"/>
+    </linearGradient>
+
+    <linearGradient id="teleBg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(10,12,16,0.88)"/>
+      <stop offset="100%" stop-color="rgba(20,24,33,0.65)"/>
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="smokeBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
     </filter>
-    
-    <!-- 3D перспектива -->
-    <linearGradient id="perspectiveGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:0.3" />
-    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <radialGradient id="sparkGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#ffea79"/>
+      <stop offset="80%" stop-color="#ff7b00"/>
+      <stop offset="100%" stop-color="#ff3b00" stop-opacity="0"/>
+    </radialGradient>
   </defs>
-  
-  <!-- Фон -->
-  <rect width="800" height="600" fill="url(#trackGradient)"/>
-  
-  <!-- Сетка трассы с 3D эффектом -->
-  <g filter="url(#glow)">
-    <path d="M 0 400 L 800 400" stroke="#e94560" stroke-width="2" opacity="0.3">
-      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
-    </path>
-    <path d="M 0 450 L 800 450" stroke="#e94560" stroke-width="2" opacity="0.3">
-      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" begin="0.2s" repeatCount="indefinite"/>
-    </path>
-    <path d="M 0 500 L 800 500" stroke="#e94560" stroke-width="2" opacity="0.3">
-      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" begin="0.4s" repeatCount="indefinite"/>
-    </path>
-    
-    <!-- Вертикальные линии перспективы -->
-    <path d="M 200 300 L 150 600" stroke="#e94560" stroke-width="1.5" opacity="0.4"/>
-    <path d="M 400 300 L 400 600" stroke="#e94560" stroke-width="1.5" opacity="0.4"/>
-    <path d="M 600 300 L 650 600" stroke="#e94560" stroke-width="1.5" opacity="0.4"/>
-  </g>
-  
-  <!-- Анимированная гоночная машина F1 -->
-  <g filter="url(#glow)">
-    <g>
-      <!-- Траектория движения -->
-      <animateTransform attributeName="transform" type="translate" values="-100 450; 900 450; -100 450" dur="3s" repeatCount="indefinite"/>
+
+  <style>
+    @keyframes asphaltDrift {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -1200; }
+    }
+
+    @keyframes smokePuff {
+      0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+      30% { transform: translate(-30px, -15px) scale(1.3); opacity: 0.55; }
+      60% { transform: translate(-70px, -25px) scale(1.8); opacity: 0.35; }
+      100% { transform: translate(-120px, -40px) scale(2.2); opacity: 0; }
+    }
+
+    @keyframes sparkBurst {
+      0% { transform: translate(0, 0) scale(0.3); opacity: 0; }
+      20% { opacity: 1; transform: translate(-25px, 8px) scale(1.2); }
+      50% { opacity: 0.8; transform: translate(-60px, 18px) scale(0.8); }
+      100% { transform: translate(-100px, 25px) scale(0.2); opacity: 0; }
+    }
+
+    @keyframes ferrariAction {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      15% { transform: translate(8px, -4px) rotate(-0.5deg); }
+      30% { transform: translate(-6px, 3px) rotate(0.8deg); }
+      48% { transform: translate(12px, -6px) rotate(-1.2deg); }
+      52% { transform: translate(-14px, 5px) rotate(1.5deg); }
+      70% { transform: translate(6px, -2px) rotate(-0.4deg); }
+      85% { transform: translate(-8px, 2px) rotate(0.6deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+
+    @keyframes mercAction {
+      0% { transform: translate(0px, 0px) rotate(0deg) scale(0.96); }
+      20% { transform: translate(-12px, 6px) rotate(1deg) scale(0.95); }
+      40% { transform: translate(16px, -8px) rotate(-1.2deg) scale(0.98); }
+      50% { transform: translate(24px, -12px) rotate(-1.5deg) scale(1.01); }
+      65% { transform: translate(-8px, 4px) rotate(0.8deg) scale(0.96); }
+      85% { transform: translate(10px, -5px) rotate(-0.6deg) scale(0.97); }
+      100% { transform: translate(0px, 0px) rotate(0deg) scale(0.96); }
+    }
+
+    @keyframes cameraVibe {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(1px, -1.5px); }
+      50% { transform: translate(-1.5px, 1px); }
+      75% { transform: translate(1.5px, 0.8px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes dotTrace {
+      0% { cx: 40; cy: 405; }
+      25% { cx: 85; cy: 360; }
+      50% { cx: 130; cy: 395; }
+      75% { cx: 175; cy: 350; }
+      100% { cx: 215; cy: 382; }
+    }
+
+    @keyframes hudSwitch {
+      0%, 48% { opacity: 1; }
+      52%, 96% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes leaderSwitch {
+      0%, 48% { opacity: 0; }
+      52%, 96% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .vibe { animation: cameraVibe 0.12s infinite linear; }
+    .ferrari-anim { animation: ferrariAction 10s infinite ease-in-out; transform-origin: 380px 320px; }
+    .merc-anim { animation: mercAction 10s infinite ease-in-out; transform-origin: 660px 240px; }
+    .asphalt-line { animation: asphaltDrift 0.4s infinite linear; }
+    .smoke-1 { animation: smokePuff 2.2s infinite ease-out; }
+    .smoke-2 { animation: smokePuff 1.8s infinite 0.7s ease-out; }
+    .smoke-3 { animation: smokePuff 2s infinite 1.3s ease-out; }
+    .spark-1 { animation: sparkBurst 0.6s infinite ease-out; }
+    .spark-2 { animation: sparkBurst 0.5s infinite 0.2s ease-out; }
+    .spark-3 { animation: sparkBurst 0.7s infinite 0.4s ease-out; }
+    .track-dot { animation: dotTrace 10s infinite ease-in-out; }
+    .hud-telemetry { animation: hudSwitch 10s infinite ease-in-out; }
+    .hud-leaderboard { animation: leaderSwitch 10s infinite ease-in-out; }
+  </style>
+
+  <!-- Camera Shake Group -->
+  <g class="vibe">
+    <!-- Sky & Sunset Atmosphere -->
+    <rect width="900" height="270" fill="url(#skyGrad)"/>
+    <circle cx="680" cy="90" r="140" fill="url(#sunGlow)"/>
+
+    <!-- Colosseum Monument Silhouette -->
+    <g opacity="0.68" fill="#54362b">
+      <path d="M 280,185 L 280,115 Q 520,80 840,115 L 850,185 Z"/>
+      <path d="M 270,125 C 400,95 650,95 850,125 L 845,95 C 650,70 400,70 275,95 Z" opacity="0.85"/>
+      <path d="M 285,150 C 420,128 660,128 835,150 L 830,132 C 660,112 420,112 290,132 Z" opacity="0.9"/>
       
-      <!-- Корпус машины -->
-      <ellipse cx="50" cy="450" rx="60" ry="15" fill="url(#carGradient)">
-        <animate attributeName="ry" values="15;18;15" dur="0.3s" repeatCount="indefinite"/>
-      </ellipse>
-      
-      <!-- Кокпит -->
-      <ellipse cx="50" cy="445" rx="20" ry="8" fill="#0a0a0a"/>
-      
-      <!-- Переднее антикрыло -->
-      <rect x="10" y="455" width="80" height="4" fill="#e94560" rx="2">
-        <animate attributeName="y" values="455;458;455" dur="0.2s" repeatCount="indefinite"/>
-      </rect>
-      
-      <!-- Заднее антикрыло -->
-      <rect x="30" y="435" width="40" height="5" fill="#e94560" rx="2">
-        <animate attributeName="y" values="435;432;435" dur="0.2s" repeatCount="indefinite"/>
-      </rect>
-      
-      <!-- Колеса -->
-      <ellipse cx="20" cy="460" rx="8" ry="12" fill="#1a1a1a">
-        <animateTransform attributeName="transform" type="rotate" values="0 20 460; 360 20 460" dur="0.5s" repeatCount="indefinite"/>
-      </ellipse>
-      <ellipse cx="80" cy="460" rx="8" ry="12" fill="#1a1a1a">
-        <animateTransform attributeName="transform" type="rotate" values="0 80 460; 360 80 460" dur="0.5s" repeatCount="indefinite"/>
-      </ellipse>
-      
-      <!-- След от скорости -->
-      <path d="M -50 450 L 10 450" stroke="#e94560" stroke-width="3" stroke-linecap="round" opacity="0.6">
-        <animate attributeName="opacity" values="0.6;0;0.6" dur="0.5s" repeatCount="indefinite"/>
-      </path>
+      <!-- Arches Top Tier -->
+      <g fill="#2e1915">
+        <rect x="310" y="102" width="12" height="18" rx="6"/><rect x="335" y="100" width="12" height="18" rx="6"/>
+        <rect x="360" y="98" width="12" height="18" rx="6"/><rect x="385" y="96" width="12" height="18" rx="6"/>
+        <rect x="410" y="94" width="12" height="18" rx="6"/><rect x="435" y="93" width="12" height="18" rx="6"/>
+        <rect x="460" y="92" width="12" height="18" rx="6"/><rect x="485" y="92" width="12" height="18" rx="6"/>
+        <rect x="510" y="92" width="12" height="18" rx="6"/><rect x="535" y="93" width="12" height="18" rx="6"/>
+        <rect x="560" y="94" width="12" height="18" rx="6"/><rect x="585" y="96" width="12" height="18" rx="6"/>
+        <rect x="610" y="98" width="12" height="18" rx="6"/><rect x="635" y="100" width="12" height="18" rx="6"/>
+        <rect x="660" y="103" width="12" height="18" rx="6"/><rect x="685" y="106" width="12" height="18" rx="6"/>
+        <rect x="710" y="109" width="12" height="18" rx="6"/><rect x="735" y="113" width="12" height="18" rx="6"/>
+        <rect x="760" y="117" width="12" height="18" rx="6"/><rect x="785" y="122" width="12" height="18" rx="6"/>
+      </g>
+
+      <!-- Arches Middle Tier -->
+      <g fill="#241310">
+        <rect x="305" y="132" width="15" height="24" rx="7.5"/><rect x="330" y="130" width="15" height="24" rx="7.5"/>
+        <rect x="355" y="128" width="15" height="24" rx="7.5"/><rect x="380" y="126" width="15" height="24" rx="7.5"/>
+        <rect x="405" y="124" width="15" height="24" rx="7.5"/><rect x="430" y="123" width="15" height="24" rx="7.5"/>
+        <rect x="455" y="122" width="15" height="24" rx="7.5"/><rect x="480" y="122" width="15" height="24" rx="7.5"/>
+        <rect x="505" y="122" width="15" height="24" rx="7.5"/><rect x="530" y="123" width="15" height="24" rx="7.5"/>
+        <rect x="555" y="124" width="15" height="24" rx="7.5"/><rect x="580" y="126" width="15" height="24" rx="7.5"/>
+        <rect x="605" y="128" width="15" height="24" rx="7.5"/><rect x="630" y="130" width="15" height="24" rx="7.5"/>
+        <rect x="655" y="133" width="15" height="24" rx="7.5"/><rect x="680" y="136" width="15" height="24" rx="7.5"/>
+        <rect x="705" y="140" width="15" height="24" rx="7.5"/><rect x="730" y="144" width="15" height="24" rx="7.5"/>
+        <rect x="755" y="148" width="15" height="24" rx="7.5"/><rect x="780" y="153" width="15" height="24" rx="7.5"/>
+      </g>
     </g>
-  </g>
-  
-  <!-- Движущиеся элементы трассы -->
-  <g>
-    <rect x="0" y="520" width="20" height="3" fill="#ffffff" opacity="0.5">
-      <animate attributeName="x" values="0;820;0" dur="1.5s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="100" y="520" width="20" height="3" fill="#ffffff" opacity="0.5">
-      <animate attributeName="x" values="100;920;100" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="200" y="520" width="20" height="3" fill="#ffffff" opacity="0.5">
-      <animate attributeName="x" values="200;1020;200" dur="1.5s" begin="0.6s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="300" y="520" width="20" height="3" fill="#ffffff" opacity="0.5">
-      <animate attributeName="x" values="300;1120;300" dur="1.5s" begin="0.9s" repeatCount="indefinite"/>
-    </rect>
-    <rect x="400" y="520" width="20" height="3" fill="#ffffff" opacity="0.5">
-      <animate attributeName="x" values="400;1220;400" dur="1.5s" begin="1.2s" repeatCount="indefinite"/>
-    </rect>
-  </g>
-  
-  <!-- Частицы скорости -->
-  <g filter="url(#glow)">
-    <circle cx="100" cy="400" r="3" fill="#e94560" opacity="0">
-      <animate attributeName="cx" values="100;800;100" dur="2s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;0.8;0" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="200" cy="420" r="2" fill="#ff6b6b" opacity="0">
-      <animate attributeName="cx" values="200;900;200" dur="1.8s" begin="0.5s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;0.8;0" dur="1.8s" begin="0.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="300" cy="380" r="4" fill="#e94560" opacity="0">
-      <animate attributeName="cx" values="300;1000;300" dur="2.2s" begin="0.3s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0;0.8;0" dur="2.2s" begin="0.3s" repeatCount="indefinite"/>
-    </circle>
-  </g>
-  
-  <!-- 3D эффект глубины -->
-  <rect width="800" height="600" fill="url(#perspectiveGradient)" pointer-events="none"/>
-  
-  <!-- Дополнительные гоночные элементы -->
-  <g filter="url(#glow)">
-    <!-- Болид на заднем плане -->
-    <g opacity="0.4">
-      <animateTransform attributeName="transform" type="translate" values="-150 430; 950 430; -150 430" dur="4s" repeatCount="indefinite"/>
-      <ellipse cx="50" cy="430" rx="40" ry="10" fill="#ff6b6b"/>
-      <ellipse cx="20" cy="438" rx="5" ry="8" fill="#1a1a1a"/>
-      <ellipse cx="80" cy="438" rx="5" ry="8" fill="#1a1a1a"/>
+
+    <!-- Grandstand & Flags -->
+    <g opacity="0.75">
+      <path d="M 0,160 L 250,175 L 250,195 L 0,185 Z" fill="#3b2420"/>
+      <g>
+        <line x1="40" y1="130" x2="40" y2="165" stroke="#777" stroke-width="1.5"/><polygon points="40,130 58,136 40,142" fill="#009246"/>
+        <line x1="90" y1="125" x2="90" y2="168" stroke="#777" stroke-width="1.5"/><polygon points="90,125 108,131 90,137" fill="#ce2b37"/>
+        <line x1="140" y1="132" x2="140" y2="170" stroke="#777" stroke-width="1.5"/><polygon points="140,132 158,138 140,144" fill="#f1c40f"/>
+        <line x1="190" y1="128" x2="190" y2="173" stroke="#777" stroke-width="1.5"/><polygon points="190,128 208,134 190,140" fill="#e10600"/>
+      </g>
+    </g>
+
+    <!-- Track Surface -->
+    <polygon points="0,180 900,180 900,450 0,450" fill="url(#trackGrad)"/>
+
+    <!-- High-speed Motion Blur Streaks -->
+    <g stroke="rgba(255,255,255,0.18)" stroke-width="2" class="asphalt-line" stroke-dasharray="80 140">
+      <line x1="-200" y1="210" x2="1100" y2="210"/>
+      <line x1="-200" y1="260" x2="1100" y2="260" stroke-width="3" stroke="rgba(255,255,255,0.25)"/>
+      <line x1="-200" y1="330" x2="1100" y2="330" stroke-width="5" stroke="rgba(255,255,255,0.3)"/>
+      <line x1="-200" y1="410" x2="1100" y2="410" stroke-width="8" stroke="rgba(255,255,255,0.35)"/>
+    </g>
+
+    <!-- Kerb Strip (Tricolore) -->
+    <g>
+      <polygon points="0,180 180,185 0,225" fill="#e10600" opacity="0.6"/>
+      <polygon points="0,225 180,185 0,260" fill="#ffffff" opacity="0.5"/>
+      <polygon points="0,260 180,185 0,295" fill="#009246" opacity="0.6"/>
+    </g>
+
+    <!-- Drift Smoke / Vapor -->
+    <g filter="url(#smokeBlur)">
+      <circle class="smoke-1" cx="330" cy="285" r="45" fill="rgba(235, 220, 205, 0.45)"/>
+      <circle class="smoke-2" cx="540" cy="245" r="38" fill="rgba(230, 225, 220, 0.4)"/>
+      <circle class="smoke-3" cx="620" cy="230" r="42" fill="rgba(240, 220, 210, 0.35)"/>
+      <ellipse class="smoke-1" cx="240" cy="340" rx="65" ry="30" fill="rgba(220, 215, 210, 0.35)"/>
+    </g>
+
+    <!-- Titanium Skid Sparks -->
+    <g filter="url(#glow)">
+      <circle class="spark-1" cx="370" cy="355" r="5" fill="url(#sparkGrad)"/>
+      <circle class="spark-2" cx="355" cy="360" r="7" fill="url(#sparkGrad)"/>
+      <circle class="spark-3" cx="330" cy="350" r="4" fill="url(#sparkGrad)"/>
+      <circle class="spark-1" cx="580" cy="290" r="5" fill="url(#sparkGrad)"/>
+    </g>
+
+    <!-- CAR 2: Mercedes F1 W12 -->
+    <g class="merc-anim">
+      <ellipse cx="660" cy="275" rx="140" ry="22" fill="rgba(0,0,0,0.55)" filter="url(#smokeBlur)"/>
+      <rect x="735" y="180" width="12" height="42" rx="3" fill="#00d2be"/>
+      <path d="M 720,185 L 755,185 L 755,196 L 720,196 Z" fill="#111"/>
+      <rect x="740" y="215" width="44" height="60" rx="10" fill="url(#tireGrad)"/>
+      <circle cx="762" cy="245" r="14" fill="#1b1c1f" stroke="#00d2be" stroke-width="2"/>
+      <path d="M 540,250 Q 610,230 730,225 L 740,248 Q 660,265 540,262 Z" fill="url(#mercSilver)"/>
+      <path d="M 570,246 L 710,238" stroke="#00d2be" stroke-width="3"/>
+      <path d="M 640,215 Q 665,210 685,232" fill="none" stroke="#0c0d0e" stroke-width="6" stroke-linecap="round"/>
+      <circle cx="655" cy="225" r="7" fill="#e74c3c"/>
+      <path d="M 535,252 L 500,256 L 535,263 Z" fill="#111215"/>
+      <path d="M 495,250 L 530,245 L 530,270 L 495,265 Z" fill="#00d2be" opacity="0.8"/>
+      <rect x="525" y="235" width="36" height="52" rx="8" fill="url(#tireGrad)"/>
+      <circle cx="543" cy="261" r="11" fill="#1b1c1f" stroke="#00d2be" stroke-width="1.8"/>
+      <text x="605" y="252" fill="#ffffff" font-family="'Impact', 'Arial Black', sans-serif" font-weight="bold" font-size="14" opacity="0.9">44</text>
+    </g>
+
+    <!-- CAR 1: Ferrari SF21 (Leader #16) -->
+    <g class="ferrari-anim">
+      <ellipse cx="380" cy="370" rx="200" ry="28" fill="rgba(0,0,0,0.65)" filter="url(#smokeBlur)"/>
+      <path d="M 480,240 L 515,240 L 510,290 L 475,290 Z" fill="#111111"/>
+      <rect x="470" y="235" width="55" height="15" rx="3" fill="#e10600"/>
+      <rect x="472" y="240" width="51" height="5" fill="#ffffff" opacity="0.85"/>
+      <text x="478" y="246" fill="#111" font-family="'Arial Black', sans-serif" font-size="6" font-weight="bold">MISSION</text>
+      <rect x="470" y="270" width="58" height="92" rx="14" fill="url(#tireGrad)"/>
+      <circle cx="499" cy="316" r="20" fill="#181818" stroke="#e10600" stroke-width="2.5"/>
+      <path d="M 180,315 Q 310,275 480,270 L 495,315 Q 380,345 180,335 Z" fill="url(#ferrariRed)"/>
+      <path d="M 320,295 C 380,285 430,288 470,305 C 420,320 370,318 320,295 Z" fill="#75060a"/>
+      <path d="M 330,260 Q 370,250 410,285" fill="none" stroke="#151515" stroke-width="10" stroke-linecap="round"/>
+      <path d="M 335,263 Q 370,254 405,285" fill="none" stroke="#c00" stroke-width="3" stroke-linecap="round"/>
+      <ellipse cx="362" cy="272" rx="11" ry="10" fill="#e10600"/>
+      <path d="M 353,272 Q 365,270 373,275" stroke="#f1c40f" stroke-width="4" fill="none"/>
+      <polygon points="380,240 405,240 425,275 390,275" fill="#a0080e"/>
+      <rect x="388" y="235" width="9" height="6" rx="2" fill="#000"/>
+      <path d="M 160,318 Q 230,305 320,295 L 320,325 Q 230,332 160,322 Z" fill="url(#ferrariRed)"/>
+      <circle cx="270" cy="312" r="9" fill="#f1c40f" opacity="0.95"/>
+      <path d="M 264,316 Q 270,305 276,316 Z" fill="#e10600"/>
+      <text x="220" y="322" fill="#ffffff" font-family="'Impact', 'Arial Black', sans-serif" font-weight="900" font-size="28">16</text>
+      <polygon points="120,316 195,302 195,340 120,330" fill="#e10600"/>
+      <path d="M 115,310 L 140,310 L 155,342 L 125,340 Z" fill="#181818"/>
+      <line x1="122" y1="320" x2="190" y2="310" stroke="#fff" stroke-width="2.5"/>
+      <line x1="120" y1="326" x2="188" y2="316" stroke="#fff" stroke-width="2.5"/>
+      <rect x="155" y="295" width="54" height="88" rx="14" fill="url(#tireGrad)"/>
+      <circle cx="182" cy="339" r="21" fill="#161616" stroke="#e10600" stroke-width="3"/>
+      <circle cx="182" cy="339" r="9" fill="#262626"/>
+      <path d="M 167,339 A 15 15 0 0 1 197,339" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-dasharray="8 5"/>
+      <path d="M 167,339 A 15 15 0 0 0 197,339" fill="none" stroke="#e10600" stroke-width="1.8" stroke-dasharray="8 5"/>
+      <polygon points="110,312 135,308 140,345 115,342" fill="#0d0d0d"/>
+      <rect x="110" y="325" width="28" height="3" fill="#e10600"/>
+    </g>
+
+    <!-- Profile Header Badge Top-Left -->
+    <g transform="translate(30, 32)">
+      <rect x="0" y="0" width="250" height="42" rx="6" fill="rgba(10,12,16,0.85)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <rect x="0" y="0" width="6" height="42" rx="3" fill="#e10600"/>
+      <path d="M 18,28 L 26,14 L 38,14 L 30,28 Z M 32,20 L 44,20 L 40,28 L 36,28 Z" fill="#e10600"/>
+      <text x="52" y="20" fill="#8e99a8" font-family="'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" letter-spacing="1">GITHUB PROFILE</text>
+      <text x="52" y="33" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800">Loraineboza</text>
+    </g>
+
+    <!-- Telemetry Track Map (Bottom-Left: 0-5s) -->
+    <g class="hud-telemetry" transform="translate(30, 330)">
+      <rect x="0" y="0" width="230" height="95" rx="8" fill="url(#teleBg)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+      <path d="M 40,75 L 85,30 L 130,65 L 175,20 L 215,52" fill="none" stroke="#ff8c00" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="40" cy="75" r="4" fill="#ffffff"/>
+      <circle cx="85" cy="30" r="4" fill="#ff8c00"/>
+      <circle cx="130" cy="65" r="4" fill="#ff8c00"/>
+      <circle cx="175" cy="20" r="4" fill="#ff8c00"/>
+      <circle class="track-dot" cx="40" cy="405" r="6" fill="#e10600" stroke="#ffffff" stroke-width="2" filter="url(#glow)"/>
+      <text x="15" y="86" fill="#8e99a8" font-family="monospace" font-size="9">SPEED: 324 KM/H</text>
+      <text x="130" y="86" fill="#00d2be" font-family="monospace" font-size="9">GEAR 7 • DRS ON</text>
+    </g>
+
+    <!-- F1 Timing Tower Leaderboard (Top-Right: 5-10s) -->
+    <g class="hud-leaderboard" transform="translate(560, 25)">
+      <rect x="0" y="0" width="310" height="135" rx="8" fill="url(#teleBg)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <rect x="12" y="10" width="38" height="18" rx="3" fill="#e10600"/>
+      <text x="16" y="23" fill="#ffffff" font-family="'Impact', 'Arial Black', sans-serif" font-style="italic" font-size="13">F1</text>
+      <text x="60" y="23" fill="#00ff66" font-family="'Segoe UI', Roboto, monospace" font-size="11" font-weight="bold" letter-spacing="1">LAP 53 / 53 • FINAL</text>
+
+      <!-- Row 1: Loraineboza (P1) -->
+      <g transform="translate(12, 38)">
+        <rect x="0" y="0" width="286" height="26" rx="4" fill="rgba(225,6,0,0.2)" stroke="#e10600" stroke-width="1"/>
+        <rect x="0" y="0" width="6" height="26" rx="2" fill="#e10600"/>
+        <text x="14" y="18" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="13">1</text>
+        <text x="32" y="18" fill="#e10600" font-family="'Segoe UI', sans-serif" font-weight="900" font-size="12">LEC</text>
+        <text x="70" y="18" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-weight="700" font-size="12">Loraineboza</text>
+        <rect x="195" y="6" width="30" height="14" rx="2" fill="#e10600"/>
+        <text x="199" y="17" fill="#fff" font-family="sans-serif" font-weight="bold" font-size="9">SOFT</text>
+        <text x="238" y="18" fill="#00ff66" font-family="monospace" font-weight="bold" font-size="11">LEADER</text>
+      </g>
+
+      <!-- Row 2: Hamilton (P2) -->
+      <g transform="translate(12, 68)">
+        <rect x="0" y="0" width="286" height="26" rx="4" fill="rgba(0,210,190,0.15)" stroke="rgba(0,210,190,0.4)" stroke-width="0.8"/>
+        <rect x="0" y="0" width="6" height="26" rx="2" fill="#00d2be"/>
+        <text x="14" y="18" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="13">2</text>
+        <text x="32" y="18" fill="#00d2be" font-family="'Segoe UI', sans-serif" font-weight="900" font-size="12">HAM</text>
+        <text x="70" y="18" fill="#d0d5dd" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="12">L. Hamilton</text>
+        <rect x="195" y="6" width="30" height="14" rx="2" fill="#f1c40f"/>
+        <text x="198" y="17" fill="#111" font-family="sans-serif" font-weight="bold" font-size="9">MED</text>
+        <text x="242" y="18" fill="#ffffff" font-family="monospace" font-size="11">+0.184s</text>
+      </g>
+
+      <!-- Row 3: Verstappen (P3) -->
+      <g transform="translate(12, 98)">
+        <rect x="0" y="0" width="286" height="26" rx="4" fill="rgba(255,255,255,0.05)"/>
+        <rect x="0" y="0" width="6" height="26" rx="2" fill="#0600ef"/>
+        <text x="14" y="18" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="13">3</text>
+        <text x="32" y="18" fill="#1e40af" font-family="'Segoe UI', sans-serif" font-weight="900" font-size="12">VER</text>
+        <text x="70" y="18" fill="#a0aab8" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="12">M. Verstappen</text>
+        <rect x="195" y="6" width="30" height="14" rx="2" fill="#f1c40f"/>
+        <text x="198" y="17" fill="#111" font-family="sans-serif" font-weight="bold" font-size="9">MED</text>
+        <text x="242" y="18" fill="#ffffff" font-family="monospace" font-size="11">+2.410s</text>
+      </g>
     </g>
   </g>
 </svg>
