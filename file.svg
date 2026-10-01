@@ -1,147 +1,331 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" width="800" height="220">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="50%" r="75%">
-      <stop offset="0%" stop-color="#0a0a0f"/>
-      <stop offset="100%" stop-color="#000"/>
+    <radialGradient id="bg" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#0a0e27"/>
+      <stop offset="100%" stop-color="#020412"/>
     </radialGradient>
 
-    <radialGradient id="syn" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#22d3ee" stop-opacity="1"/>
-      <stop offset="60%" stop-color="#22d3ee" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
     </radialGradient>
 
-    <radialGradient id="synP" cx="50%" cy="50%" r="50%">
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7b2ff7" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#7b2ff7" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glow3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff2d95" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ff2d95" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowCyan" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00ffff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#00ffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowPurple" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#a855f7" stop-opacity="1"/>
-      <stop offset="60%" stop-color="#a855f7" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
     </radialGradient>
 
-    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="1.2"/>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+    <filter id="blur3">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="blurBig">
+      <feGaussianBlur stdDeviation="15"/>
     </filter>
 
-    <filter id="bigglow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="6"/>
+    <filter id="nodeGlow">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
+
+    <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7b2ff7" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7b2ff7" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ff2d95" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </linearGradient>
   </defs>
 
-  <rect width="800" height="420" fill="url(#bg)"/>
+  <!-- Background -->
+  <rect width="800" height="220" fill="url(#bg)"/>
 
-  <!-- ===== КОНТУР МОЗГА ===== -->
-  <g fill="none" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="1.4">
-    <!-- левое полушарие -->
-    <path d="M400,60
-             C 330,50 250,70 220,120
-             C 195,165 205,200 195,235
-             C 185,275 200,310 235,330
-             C 260,345 300,345 330,335
-             C 360,325 385,315 400,300"/>
+  <!-- Ambient moving glows -->
+  <ellipse cx="200" cy="110" rx="180" ry="100" fill="url(#glow1)" opacity="0.15" filter="url(#blurBig)">
+    <animate attributeName="cx" values="200;500;350;200" dur="12s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="110;80;150;110" dur="10s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.15;0.25;0.1;0.15" dur="8s" repeatCount="indefinite"/>
+  </ellipse>
 
-    <!-- правое полушарие (зеркало) -->
-    <path d="M400,60
-             C 470,50 550,70 580,120
-             C 605,165 595,200 605,235
-             C 615,275 600,310 565,330
-             C 540,345 500,345 470,335
-             C 440,325 415,315 400,300"/>
+  <ellipse cx="600" cy="110" rx="200" ry="110" fill="url(#glow2)" opacity="0.12" filter="url(#blurBig)">
+    <animate attributeName="cx" values="600;300;550;600" dur="14s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="110;140;70;110" dur="11s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.12;0.2;0.08;0.12" dur="9s" repeatCount="indefinite"/>
+  </ellipse>
 
-    <!-- центральная борозда -->
-    <path d="M400,60 L400,300" stroke-opacity="0.3"/>
+  <ellipse cx="400" cy="110" rx="150" ry="80" fill="url(#glow3)" opacity="0.08" filter="url(#blurBig)">
+    <animate attributeName="cx" values="400;200;600;400" dur="16s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="110;50;170;110" dur="13s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.08;0.15;0.05;0.08" dur="10s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- Neural network connections -->
+  <g opacity="0.4">
+    <!-- Layer 1 to Layer 2 -->
+    <line x1="120" y1="60" x2="280" y2="40" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.2;0.7;0.2" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="60" x2="280" y2="90" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="60" x2="280" y2="140" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.1;0.5;0.1" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="110" x2="280" y2="40" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="110" x2="280" y2="90" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="110" x2="280" y2="140" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="160" x2="280" y2="40" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4.2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="160" x2="280" y2="90" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="120" y1="160" x2="280" y2="140" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.6s" repeatCount="indefinite"/>
+    </line>
+
+    <!-- Layer 2 to Layer 3 -->
+    <line x1="280" y1="40" x2="450" y2="70" stroke="url(#lineGrad2)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.1s" repeatCount="indefinite"/>
+    </line>
+    <line x1="280" y1="40" x2="450" y2="130" stroke="url(#lineGrad2)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="280" y1="90" x2="450" y2="70" stroke="url(#lineGrad2)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.7s" repeatCount="indefinite"/>
+    </line>
+    <line x1="280" y1="90" x2="450" y2="130" stroke="url(#lineGrad2)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.9s" repeatCount="indefinite"/>
+    </line>
+    <line x1="280" y1="140" x2="450" y2="70" stroke="url(#lineGrad2)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.1;0.4;0.1" dur="4.1s" repeatCount="indefinite"/>
+    </line>
+    <line x1="280" y1="140" x2="450" y2="130" stroke="url(#lineGrad2)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.9s" repeatCount="indefinite"/>
+    </line>
+
+    <!-- Layer 3 to Layer 4 -->
+    <line x1="450" y1="70" x2="620" y2="50" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3.4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="450" y1="70" x2="620" y2="110" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4.3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="450" y1="70" x2="620" y2="170" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.1;0.4;0.1" dur="5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="450" y1="130" x2="620" y2="50" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2.6s" repeatCount="indefinite"/>
+    </line>
+    <line x1="450" y1="130" x2="620" y2="110" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3.7s" repeatCount="indefinite"/>
+    </line>
+    <line x1="450" y1="130" x2="620" y2="170" stroke="url(#lineGrad1)" stroke-width="0.8">
+      <animate attributeName="opacity" values="0.2;0.5;0.2" dur="4.6s" repeatCount="indefinite"/>
+    </line>
   </g>
 
-  <!-- ===== ИЗВИЛИНЫ (gyri) ===== -->
-  <g fill="none" stroke="#22d3ee" stroke-opacity="0.4" stroke-width="1.1" filter="url(#soft)">
-    <!-- левое -->
-    <path d="M240,110 C 270,95 300,110 295,140 C 290,170 260,175 245,155"/>
-    <path d="M250,190 C 285,175 320,195 310,225 C 300,255 265,250 250,230"/>
-    <path d="M245,265 C 275,255 305,275 295,305 C 285,330 255,325 240,305"/>
-    <path d="M300,150 C 330,140 355,160 348,185"/>
-    <path d="M305,215 C 340,205 365,225 358,250"/>
-    <path d="M310,280 C 345,275 370,290 362,315"/>
-
-    <!-- правое -->
-    <path d="M560,110 C 530,95 500,110 505,140 C 510,170 540,175 555,155"/>
-    <path d="M550,190 C 515,175 480,195 490,225 C 500,255 535,250 550,230"/>
-    <path d="M555,265 C 525,255 495,275 505,305 C 515,330 545,325 560,305"/>
-    <path d="M500,150 C 470,140 445,160 452,185"/>
-    <path d="M495,215 C 460,205 435,225 442,250"/>
-    <path d="M490,280 C 455,275 430,290 438,315"/>
+  <!-- Data pulses traveling along connections -->
+  <g filter="url(#blur1)">
+    <circle r="2" fill="#00ffff">
+      <animateMotion dur="3s" repeatCount="indefinite" path="M120,60 L280,90 L450,70 L620,110"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#a855f7">
+      <animateMotion dur="3.5s" repeatCount="indefinite" path="M120,110 L280,140 L450,130 L620,50"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2" fill="#ff2d95">
+      <animateMotion dur="4s" repeatCount="indefinite" path="M120,160 L280,40 L450,130 L620,170"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#00d4ff">
+      <animateMotion dur="2.8s" repeatCount="indefinite" path="M120,60 L280,140 L450,70 L620,50"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2" fill="#7b2ff7">
+      <animateMotion dur="3.2s" repeatCount="indefinite" path="M120,110 L280,40 L450,130 L620,110"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.8" fill="#00ffff">
+      <animateMotion dur="3.8s" repeatCount="indefinite" path="M120,160 L280,90 L450,70 L620,170"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="3.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="1.5" fill="#ff2d95">
+      <animateMotion dur="4.5s" repeatCount="indefinite" path="M120,60 L280,90 L450,130 L620,50"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="4.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="2" fill="#a855f7">
+      <animateMotion dur="2.9s" repeatCount="indefinite" path="M120,110 L280,140 L450,70 L620,170"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="2.9s" repeatCount="indefinite"/>
+    </circle>
   </g>
 
-  <!-- ===== СИНАПСЫ (узлы) ===== -->
+  <!-- Neural nodes with pulsing glow -->
+  <!-- Layer 1 -->
+  <g filter="url(#nodeGlow)">
+    <circle cx="120" cy="60" r="5" fill="#00d4ff">
+      <animate attributeName="r" values="4;7;4" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="120" cy="110" r="5" fill="#7b2ff7">
+      <animate attributeName="r" values="5;8;5" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="120" cy="160" r="5" fill="#ff2d95">
+      <animate attributeName="r" values="4;7;4" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Layer 2 -->
+  <g filter="url(#nodeGlow)">
+    <circle cx="280" cy="40" r="4" fill="#a855f7">
+      <animate attributeName="r" values="3;6;3" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="90" r="5" fill="#00ffff">
+      <animate attributeName="r" values="4;8;4" dur="2.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="280" cy="140" r="4" fill="#ff2d95">
+      <animate attributeName="r" values="3;6;3" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Layer 3 -->
+  <g filter="url(#nodeGlow)">
+    <circle cx="450" cy="70" r="5" fill="#00d4ff">
+      <animate attributeName="r" values="4;7;4" dur="2.9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="450" cy="130" r="5" fill="#7b2ff7">
+      <animate attributeName="r" values="4;8;4" dur="3.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3.3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Layer 4 -->
+  <g filter="url(#nodeGlow)">
+    <circle cx="620" cy="50" r="4" fill="#00ffff">
+      <animate attributeName="r" values="3;6;3" dur="3.1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="620" cy="110" r="5" fill="#a855f7">
+      <animate attributeName="r" values="4;7;4" dur="2.7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="620" cy="170" r="4" fill="#ff2d95">
+      <animate attributeName="r" values="3;6;3" dur="3.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="3.4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Floating particles -->
+  <g filter="url(#blur2)">
+    <circle cx="50" cy="30" r="1.5" fill="#00d4ff">
+      <animate attributeName="cy" values="30;190;30" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="50;80;50" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="750" cy="180" r="1.5" fill="#7b2ff7">
+      <animate attributeName="cy" values="180;20;180" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="750;720;750" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="9s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="200" r="1" fill="#ff2d95">
+      <animate attributeName="cy" values="200;10;200" dur="11s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="350;380;350" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.6;0" dur="11s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="10" r="1" fill="#00ffff">
+      <animate attributeName="cy" values="10;210;10" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="550;520;550" dur="9s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.7;0" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="680" cy="100" r="1.2" fill="#a855f7">
+      <animate attributeName="cy" values="100;30;100" dur="7s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="680;710;680" dur="5.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.7;0" dur="7s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="80" cy="150" r="1.2" fill="#00d4ff">
+      <animate attributeName="cy" values="150;40;150" dur="9.5s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="80;50;80" dur="7.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.6;0" dur="9.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="190" r="1" fill="#ff2d95">
+      <animate attributeName="cy" values="190;20;190" dur="12s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="200;230;200" dur="10s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.5;0" dur="12s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="500" cy="20" r="1.3" fill="#7b2ff7">
+      <animate attributeName="cy" values="20;200;20" dur="10.5s" repeatCount="indefinite"/>
+      <animate attributeName="cx" values="500;470;500" dur="8.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.7;0" dur="10.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Central energy core -->
+  <g filter="url(#blur3)">
+    <ellipse cx="390" cy="110" rx="60" ry="40" fill="#00d4ff" opacity="0.08">
+      <animate attributeName="rx" values="60;80;60" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="40;55;40" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.08;0.15;0.08" dur="6s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="390" cy="110" rx="40" ry="25" fill="#7b2ff7" opacity="0.1">
+      <animate attributeName="rx" values="40;55;40" dur="4.5s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="25;38;25" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.1;0.18;0.1" dur="5.5s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- Orbiting particles around center -->
   <g>
-    <!-- левое полушарие -->
-    <circle cx="255" cy="130" r="10" fill="url(#syn)">
-      <animate attributeName="r" values="8;14;8" dur="2.2s" repeatCount="indefinite"/>
+    <circle r="1.8" fill="#00ffff" filter="url(#blur1)">
+      <animateMotion dur="6s" repeatCount="indefinite" path="M390,110 m-70,0 a70,35 0 1,1 140,0 a70,35 0 1,1 -140,0"/>
+      <animate attributeName="opacity" values="0;1;1;0" dur="6s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="270" cy="205" r="10" fill="url(#syn)">
-      <animate attributeName="r" values="8;14;8" dur="2.8s" repeatCount="indefinite"/>
+    <circle r="1.5" fill="#ff2d95" filter="url(#blur1)">
+      <animateMotion dur="8s" repeatCount="indefinite" path="M390,110 m-55,0 a55,28 0 1,0 110,0 a55,28 0 1,0 -110,0"/>
+      <animate attributeName="opacity" values="0;0.9;0.9;0" dur="8s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="265" cy="285" r="10" fill="url(#syn)">
-      <animate attributeName="r" values="8;14;8" dur="2.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="330" cy="165" r="8" fill="url(#synP)">
-      <animate attributeName="r" values="6;12;6" dur="3s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="338" cy="235" r="8" fill="url(#synP)">
-      <animate attributeName="r" values="6;12;6" dur="2.6s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="335" cy="295" r="8" fill="url(#syn)">
-      <animate attributeName="r" values="6;12;6" dur="2.9s" repeatCount="indefinite"/>
-    </circle>
-
-    <!-- правое полушарие -->
-    <circle cx="545" cy="130" r="10" fill="url(#syn)">
-      <animate attributeName="r" values="8;14;8" dur="2.4s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="530" cy="205" r="10" fill="url(#syn)">
-      <animate attributeName="r" values="8;14;8" dur="2.7s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="535" cy="285" r="10" fill="url(#syn)">
-      <animate attributeName="r" values="8;14;8" dur="2.3s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="470" cy="165" r="8" fill="url(#synP)">
-      <animate attributeName="r" values="6;12;6" dur="2.9s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="462" cy="235" r="8" fill="url(#synP)">
-      <animate attributeName="r" values="6;12;6" dur="2.5s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="465" cy="295" r="8" fill="url(#syn)">
-      <animate attributeName="r" values="6;12;6" dur="3.1s" repeatCount="indefinite"/>
+    <circle r="1.2" fill="#a855f7" filter="url(#blur1)">
+      <animateMotion dur="10s" repeatCount="indefinite" path="M390,110 m-85,0 a85,42 0 1,1 170,0 a85,42 0 1,1 -170,0"/>
+      <animate attributeName="opacity" values="0;0.7;0.7;0" dur="10s" repeatCount="indefinite"/>
     </circle>
   </g>
-
-  <!-- ===== ИМПУЛЬСЫ, БЕГУЩИЕ ПО СВЯЗЯМ ===== -->
-  <g fill="#22d3ee">
-    <!-- левое -->
-    <circle r="2.5"><animateMotion dur="2.4s" repeatCount="indefinite" path="M255,130 Q 290,150 330,165"/></circle>
-    <circle r="2.5"><animateMotion dur="2.8s" repeatCount="indefinite" path="M270,205 Q 305,220 338,235"/></circle>
-    <circle r="2.5"><animateMotion dur="2.6s" repeatCount="indefinite" path="M265,285 Q 300,295 335,295"/></circle>
-    <circle r="2.5"><animateMotion dur="3.2s" repeatCount="indefinite" path="M330,165 Q 335,200 338,235"/></circle>
-    <circle r="2.5"><animateMotion dur="3.0s" repeatCount="indefinite" path="M338,235 Q 340,265 335,295"/></circle>
-
-    <!-- правое -->
-    <circle r="2.5"><animateMotion dur="2.5s" repeatCount="indefinite" path="M545,130 Q 510,150 470,165"/></circle>
-    <circle r="2.5"><animateMotion dur="2.9s" repeatCount="indefinite" path="M530,205 Q 495,220 462,235"/></circle>
-    <circle r="2.5"><animateMotion dur="2.7s" repeatCount="indefinite" path="M535,285 Q 500,295 465,295"/></circle>
-    <circle r="2.5"><animateMotion dur="3.1s" repeatCount="indefinite" path="M470,165 Q 465,200 462,235"/></circle>
-    <circle r="2.5"><animateMotion dur="2.9s" repeatCount="indefinite" path="M462,235 Q 460,265 465,295"/></circle>
-  </g>
-
-  <!-- межполушарные импульсы (фиолетовые) -->
-  <g fill="#a855f7">
-    <circle r="2.5"><animateMotion dur="3.4s" repeatCount="indefinite" path="M330,165 Q 400,150 470,165"/></circle>
-    <circle r="2.5"><animateMotion dur="3.8s" repeatCount="indefinite" path="M338,235 Q 400,225 462,235"/></circle>
-    <circle r="2.5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M335,295 Q 400,285 465,295"/></circle>
-  </g>
-
-  <!-- ===== ПУЛЬСИРУЮЩЕЕ ЯДРО В ЦЕНТРЕ ===== -->
-  <circle cx="400" cy="180" r="18" fill="url(#synP)" filter="url(#bigglow)">
-    <animate attributeName="r" values="14;26;14" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- тонкая окантовка по краям -->
-  <rect x="1" y="1" width="798" height="418" fill="none" stroke="#18181b" stroke-width="2" rx="12"/>
 </svg>
