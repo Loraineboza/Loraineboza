@@ -1,371 +1,481 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" role="img" aria-label="Abstract 3D futuristic neural animation">
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 620"
+     width="1200"
+     height="620"
+     role="img"
+     aria-label="Abstract 3D autonomous vehicle cockpit visualization">
+
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#02030d"/>
-      <stop offset=".45" stop-color="#0a1230"/>
-      <stop offset="1" stop-color="#21051f"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#030611"/>
+      <stop offset=".52" stop-color="#071a30"/>
+      <stop offset="1" stop-color="#09030f"/>
     </linearGradient>
 
-    <radialGradient id="coreGlow">
-      <stop offset="0" stop-color="#dfffff" stop-opacity="1"/>
-      <stop offset=".15" stop-color="#61f6ff" stop-opacity=".95"/>
-      <stop offset=".42" stop-color="#876bff" stop-opacity=".35"/>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#172848"/>
+      <stop offset=".55" stop-color="#0a1124"/>
+      <stop offset="1" stop-color="#02030a"/>
+    </linearGradient>
+
+    <linearGradient id="neonCyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ddffff"/>
+      <stop offset=".28" stop-color="#4ef5ff"/>
+      <stop offset=".65" stop-color="#5b9cff"/>
+      <stop offset="1" stop-color="#c86dff"/>
+    </linearGradient>
+
+    <linearGradient id="neonPink" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff62d3"/>
+      <stop offset=".5" stop-color="#a16bff"/>
+      <stop offset="1" stop-color="#4ef3ff"/>
+    </linearGradient>
+
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#98ffff" stop-opacity=".22"/>
+      <stop offset=".48" stop-color="#6f8fff" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#ff5dd2" stop-opacity=".18"/>
+    </linearGradient>
+
+    <radialGradient id="horizonGlow">
+      <stop offset="0" stop-color="#70f7ff" stop-opacity=".6"/>
+      <stop offset=".35" stop-color="#5c90ff" stop-opacity=".22"/>
       <stop offset="1" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
 
-    <radialGradient id="atmosphere">
-      <stop offset="0" stop-color="#65f8ff" stop-opacity=".3"/>
-      <stop offset=".45" stop-color="#9a62ff" stop-opacity=".12"/>
+    <radialGradient id="carGlow">
+      <stop offset="0" stop-color="#dfffff" stop-opacity=".98"/>
+      <stop offset=".18" stop-color="#5bf6ff" stop-opacity=".8"/>
+      <stop offset=".48" stop-color="#7e72ff" stop-opacity=".26"/>
       <stop offset="1" stop-color="#000" stop-opacity="0"/>
     </radialGradient>
-
-    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#dfffff"/>
-      <stop offset=".3" stop-color="#4df4ff"/>
-      <stop offset=".7" stop-color="#637dff"/>
-      <stop offset="1" stop-color="#ee5ad7"/>
-    </linearGradient>
-
-    <linearGradient id="violet" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ff72d4"/>
-      <stop offset=".45" stop-color="#9a68ff"/>
-      <stop offset="1" stop-color="#4defff"/>
-    </linearGradient>
 
     <filter id="glow" x="-150%" y="-150%" width="400%" height="400%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
 
-    <filter id="bigGlow" x="-150%" y="-150%" width="400%" height="400%">
-      <feGaussianBlur stdDeviation="24"/>
+    <filter id="strongGlow" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="16"/>
     </filter>
 
     <filter id="grain">
-      <feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="7"/>
+      <feTurbulence type="fractalNoise"
+                    baseFrequency=".8"
+                    numOctaves="2"
+                    seed="12"/>
       <feColorMatrix values="1 0 0 0 0
                               0 1 0 0 0
                               0 0 1 0 0
                               0 0 0 .045 0"/>
     </filter>
 
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0V44" fill="none" stroke="#7f9dff" stroke-opacity=".1"/>
-      <circle cx="0" cy="0" r="1" fill="#7cf5ff" opacity=".3"/>
+    <pattern id="roadGrid" width="70" height="38" patternUnits="userSpaceOnUse">
+      <path d="M0 0H70M0 38H70" stroke="#6e9eff" stroke-opacity=".16"/>
+      <path d="M0 0V38M70 0V38" stroke="#6e9eff" stroke-opacity=".08"/>
     </pattern>
 
     <clipPath id="frame">
       <rect x="14" y="14" width="1172" height="592" rx="38"/>
     </clipPath>
 
-    <g id="particle">
-      <circle r="3.5" fill="#eaffff"/>
-      <circle r="11" fill="none" stroke="#62f6ff" stroke-width="1.4">
-        <animate attributeName="r" values="7;19;7" dur="3.6s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".9;0;.9" dur="3.6s" repeatCount="indefinite"/>
+    <g id="scanDot">
+      <circle r="3" fill="#eaffff"/>
+      <circle r="12" fill="none" stroke="#63f6ff" stroke-width="1.3">
+        <animate attributeName="r" values="7;21;7"
+                 dur="3s"
+                 repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".9;0;.9"
+                 dur="3s"
+                 repeatCount="indefinite"/>
       </circle>
     </g>
   </defs>
 
   <style>
-    .data-line {
+    .hud {
       fill: none;
+      stroke: #79f7ff;
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-width: 1.5;
-      stroke-dasharray: 4 14;
-      animation: flow 11s linear infinite;
+      stroke-dasharray: 4 11;
+      animation: flow 9s linear infinite;
     }
 
-    .data-line.alt {
-      stroke-dasharray: 2 17;
-      animation-duration: 15s;
+    .hud.pink {
+      stroke: #e878ff;
+      stroke-dasharray: 2 14;
+      animation-duration: 12s;
       animation-direction: reverse;
     }
 
-    .energy {
+    .beam {
       fill: none;
-      stroke: #a8ffff;
       stroke-linecap: round;
       stroke-width: 2;
-      stroke-dasharray: 1 180;
-      animation: energy 5.2s ease-in-out infinite;
+      stroke-dasharray: 1 150;
+      animation: beam 4.8s ease-in-out infinite;
     }
 
-    .orbit {
-      fill: none;
-      stroke-linecap: round;
-      transform-origin: 600px 306px;
+    .pulse {
+      animation: pulse 3.8s ease-in-out infinite;
     }
 
-    .star {
-      fill: #c7ffff;
-      animation: twinkle 4s ease-in-out infinite;
+    .twinkle {
+      animation: twinkle 3.6s ease-in-out infinite;
       transform-box: fill-box;
       transform-origin: center;
     }
 
-    @keyframes flow {
-      to { stroke-dashoffset: -210; }
+    .scan {
+      animation: scan 6s ease-in-out infinite;
     }
 
-    @keyframes energy {
-      0%, 100% { stroke-dashoffset: 0; opacity: .12; }
-      50% { stroke-dashoffset: -120; opacity: .95; }
+    @keyframes flow {
+      to { stroke-dashoffset: -180; }
+    }
+
+    @keyframes beam {
+      0%, 100% { stroke-dashoffset: 0; opacity: .1; }
+      50% { stroke-dashoffset: -105; opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .38; }
+      50% { opacity: 1; }
     }
 
     @keyframes twinkle {
-      0%, 100% { opacity: .15; transform: scale(.65); }
-      50% { opacity: 1; transform: scale(1.6); }
+      0%, 100% { opacity: .12; transform: scale(.65); }
+      50% { opacity: 1; transform: scale(1.7); }
     }
 
-    @keyframes breathe {
-      0%, 100% { opacity: .38; }
-      50% { opacity: .9; }
+    @keyframes scan {
+      0%, 100% { opacity: .18; }
+      50% { opacity: .95; }
     }
   </style>
 
-  <rect width="1200" height="620" rx="42" fill="#01020a"/>
+  <rect width="1200" height="620" rx="42" fill="#010208"/>
 
   <g clip-path="url(#frame)">
-    <rect x="14" y="14" width="1172" height="592" fill="url(#bg)"/>
-    <rect x="14" y="14" width="1172" height="592" fill="url(#grid)">
-      <animateTransform attributeName="transform"
-                        type="translate"
-                        values="0 0;44 44;0 0"
-                        dur="20s"
-                        repeatCount="indefinite"/>
-    </rect>
+    <!-- Ночное пространство за лобовым стеклом -->
+    <rect x="14" y="14" width="1172" height="592" fill="url(#sky)"/>
 
-    <ellipse cx="600" cy="306" rx="440" ry="270"
-             fill="url(#atmosphere)"
-             filter="url(#bigGlow)">
-      <animate attributeName="rx" values="390;470;390" dur="10s" repeatCount="indefinite"/>
-      <animate attributeName="ry" values="230;310;230" dur="10s" repeatCount="indefinite"/>
+    <ellipse cx="600" cy="282"
+             rx="430"
+             ry="230"
+             fill="url(#horizonGlow)"
+             filter="url(#strongGlow)">
+      <animate attributeName="rx"
+               values="380;470;380"
+               dur="9s"
+               repeatCount="indefinite"/>
+      <animate attributeName="ry"
+               values="190;255;190"
+               dur="9s"
+               repeatCount="indefinite"/>
     </ellipse>
 
-    <g>
-      <circle class="star" cx="90" cy="112" r="1.4"/>
-      <circle class="star" cx="178" cy="468" r="1.1" style="animation-delay:-1.2s"/>
-      <circle class="star" cx="264" cy="82" r="1.2" style="animation-delay:-2.5s"/>
-      <circle class="star" cx="370" cy="530" r="1" style="animation-delay:-.8s"/>
-      <circle class="star" cx="454" cy="128" r="1.1" style="animation-delay:-3s"/>
-      <circle class="star" cx="748" cy="94" r="1.3" style="animation-delay:-1.8s"/>
-      <circle class="star" cx="842" cy="510" r="1" style="animation-delay:-.6s"/>
-      <circle class="star" cx="966" cy="132" r="1.4" style="animation-delay:-2.2s"/>
-      <circle class="star" cx="1094" cy="422" r="1.2" style="animation-delay:-1.5s"/>
-      <circle class="star" cx="1140" cy="88" r=".9" style="animation-delay:-.3s"/>
+    <!-- Звёзды и дальние огни -->
+    <g fill="#c8ffff">
+      <circle class="twinkle" cx="94" cy="86" r="1.2"/>
+      <circle class="twinkle" cx="168" cy="170" r="1" style="animation-delay:-1s"/>
+      <circle class="twinkle" cx="270" cy="68" r="1.3" style="animation-delay:-2.2s"/>
+      <circle class="twinkle" cx="382" cy="122" r=".9" style="animation-delay:-.4s"/>
+      <circle class="twinkle" cx="486" cy="58" r="1.1" style="animation-delay:-2.8s"/>
+      <circle class="twinkle" cx="726" cy="80" r="1.1" style="animation-delay:-1.7s"/>
+      <circle class="twinkle" cx="844" cy="138" r=".9" style="animation-delay:-.9s"/>
+      <circle class="twinkle" cx="970" cy="70" r="1.3" style="animation-delay:-2.5s"/>
+      <circle class="twinkle" cx="1100" cy="156" r="1" style="animation-delay:-1.4s"/>
     </g>
 
-    <!-- Дальняя 3D-сетка -->
-    <g opacity=".32" fill="none" stroke="#65dfff">
-      <path d="M50 520 Q600 360 1150 520" stroke-width="1"/>
-      <path d="M70 550 Q600 390 1130 550" stroke-width="1"/>
-      <path d="M95 580 Q600 420 1105 580" stroke-width="1"/>
-      <path d="M210 420 Q600 350 990 420" stroke-width="1"/>
-      <path d="M160 470 Q600 370 1040 470" stroke-width="1"/>
-      <path d="M250 380 Q600 325 950 380" stroke-width="1"/>
-      <path d="M310 340 Q600 305 890 340" stroke-width="1"/>
+    <!-- Неоновый городской горизонт -->
+    <g opacity=".55" filter="url(#glow)">
+      <path d="M40 304 L80 279 L118 300 L155 250 L201 293 L242 270
+               L284 306 L330 247 L372 289 L418 264 L463 303
+               L512 246 L556 288 L600 254 L642 292 L692 238
+               L734 285 L784 258 L824 302 L872 251 L914 291
+               L958 265 L1000 300 L1048 242 L1090 282 L1155 259"
+            fill="none"
+            stroke="url(#neonCyan)"
+            stroke-width="2"/>
+
+      <path d="M48 316 L1152 316"
+            stroke="#65f6ff"
+            stroke-opacity=".35"
+            stroke-width="1"/>
     </g>
 
-    <g opacity=".26" fill="none" stroke="#b26dff" stroke-width="1">
-      <path d="M120 100 Q600 260 1080 100"/>
-      <path d="M180 62 Q600 230 1020 62"/>
-      <path d="M260 40 Q600 190 940 40"/>
+    <!-- Объёмная перспектива дороги -->
+    <path d="M438 310 L762 310 L1110 606 L90 606 Z"
+          fill="url(#road)"
+          stroke="#6af5ff"
+          stroke-opacity=".45"
+          stroke-width="1.5"/>
+
+    <path d="M438 310 L762 310 L1110 606 L90 606 Z"
+          fill="url(#roadGrid)"
+          opacity=".6">
+      <animateTransform attributeName="transform"
+                        type="translate"
+                        values="0 0;0 38;0 0"
+                        dur="3.5s"
+                        repeatCount="indefinite"/>
+    </path>
+
+    <!-- Дорожные энергетические полосы -->
+    <g fill="none" stroke-linecap="round" filter="url(#glow)">
+      <path d="M438 315 L90 606"
+            stroke="url(#neonCyan)"
+            stroke-width="3"/>
+      <path d="M762 315 L1110 606"
+            stroke="url(#neonPink)"
+            stroke-width="3"/>
+      <path d="M570 315 L488 606"
+            stroke="#6cf5ff"
+            stroke-opacity=".65"
+            stroke-width="2"/>
+      <path d="M630 315 L712 606"
+            stroke="#df78ff"
+            stroke-opacity=".65"
+            stroke-width="2"/>
     </g>
 
-    <!-- Потоки вокруг ядра -->
+    <!-- Центральная траектория автопилота -->
+    <path d="M600 606
+             C554 546 548 496 568 445
+             C584 403 592 361 600 315"
+          fill="none"
+          stroke="#b9ffff"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-dasharray="2 19"
+          filter="url(#glow)">
+      <animate attributeName="stroke-dashoffset"
+               values="0;-140"
+               dur="2.8s"
+               repeatCount="indefinite"/>
+    </path>
+
+    <!-- Сканирующие LiDAR-дуги -->
+    <g fill="none" stroke="url(#neonCyan)" filter="url(#glow)">
+      <path d="M210 410 Q600 230 990 410"
+            stroke-width="1.4"
+            stroke-dasharray="5 12"/>
+      <path d="M280 475 Q600 295 920 475"
+            stroke-width="1.2"
+            stroke-dasharray="3 14"/>
+      <path d="M360 535 Q600 365 840 535"
+            stroke-width="1"
+            stroke-dasharray="2 16"/>
+    </g>
+
+    <g class="scan" fill="#8cffff" filter="url(#glow)">
+      <circle cx="330" cy="365" r="4"/>
+      <circle cx="870" cy="370" r="4"/>
+      <circle cx="415" cy="426" r="3"/>
+      <circle cx="787" cy="432" r="3"/>
+      <circle cx="510" cy="487" r="3"/>
+      <circle cx="692" cy="491" r="3"/>
+    </g>
+
+    <!-- Виртуальная машина впереди -->
+    <g transform="translate(600 300)" filter="url(#glow)">
+      <ellipse cx="0" cy="92" rx="148" ry="32"
+               fill="url(#carGlow)"
+               opacity=".55">
+        <animate attributeName="rx"
+                 values="125;165;125"
+                 dur="4s"
+                 repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Тень -->
+      <path d="M-118 73 Q-92 42 -52 35 L52 35 Q92 42 118 73
+               Q92 92 0 96 Q-92 92 -118 73Z"
+            fill="#020611"
+            stroke="#50edff"
+            stroke-opacity=".75"
+            stroke-width="2"/>
+
+      <!-- Основной корпус -->
+      <path d="M-95 62
+               Q-82 25 -48 2
+               Q-23 -16 0 -18
+               Q23 -16 48 2
+               Q82 25 95 62
+               Q58 82 0 85
+               Q-58 82 -95 62Z"
+            fill="url(#glass)"
+            stroke="url(#neonCyan)"
+            stroke-width="2"/>
+
+      <!-- Стеклянная кабина -->
+      <path d="M-52 27 Q-35 -1 0 -7 Q35 -1 52 27
+               Q25 39 0 40 Q-25 39 -52 27Z"
+            fill="#07192e"
+            stroke="#b9ffff"
+            stroke-opacity=".85"
+            stroke-width="1.5"/>
+
+      <path d="M-32 24 Q-18 7 0 4 Q18 7 32 24"
+            fill="none"
+            stroke="#6cf7ff"
+            stroke-opacity=".75"
+            stroke-width="1"/>
+
+      <!-- Фары -->
+      <path d="M-76 53 Q-61 43 -43 44 L-48 59 Q-65 64 -78 62Z"
+            fill="#cfffff"/>
+      <path d="M76 53 Q61 43 43 44 L48 59 Q65 64 78 62Z"
+            fill="#ff9bea"/>
+
+      <path d="M-72 54 Q-58 48 -45 49"
+            stroke="#64f6ff"
+            stroke-width="4"
+            stroke-linecap="round"/>
+      <path d="M72 54 Q58 48 45 49"
+            stroke="#ff72d5"
+            stroke-width="4"
+            stroke-linecap="round"/>
+
+      <!-- Сенсорный купол -->
+      <ellipse cy="-5" rx="19" ry="8"
+               fill="#dfffff"
+               opacity=".82">
+        <animate attributeName="opacity"
+                 values=".45;1;.45"
+                 dur="2.8s"
+                 repeatCount="indefinite"/>
+      </ellipse>
+
+      <circle cy="-5" r="31"
+              fill="none"
+              stroke="#70f8ff"
+              stroke-width="1"
+              stroke-dasharray="2 8">
+        <animateTransform attributeName="transform"
+                          type="rotate"
+                          values="0;360"
+                          dur="4s"
+                          repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Световые линии кузова -->
+      <path d="M-86 65 Q0 91 86 65"
+            fill="none"
+            stroke="#a9ffff"
+            stroke-width="1.5"/>
+      <path d="M-63 29 Q0 51 63 29"
+            fill="none"
+            stroke="#d879ff"
+            stroke-opacity=".75"
+            stroke-width="1"/>
+    </g>
+
+    <!-- Объекты, распознанные вокруг автомобиля -->
+    <g fill="none" filter="url(#glow)">
+      <path d="M270 355 h70 v58 h-70z"
+            stroke="#62f6ff"
+            stroke-width="1.5"
+            stroke-dasharray="4 6"/>
+      <path d="M860 360 h72 v60 h-72z"
+            stroke="#ff72d5"
+            stroke-width="1.5"
+            stroke-dasharray="4 6"/>
+      <path d="M414 428 h54 v46 h-54z"
+            stroke="#7d9cff"
+            stroke-width="1.2"
+            stroke-dasharray="3 6"/>
+      <path d="M735 430 h58 v48 h-58z"
+            stroke="#a276ff"
+            stroke-width="1.2"
+            stroke-dasharray="3 6"/>
+    </g>
+
+    <!-- Связи сенсорной сети -->
+    <g fill="none" stroke-width="1" stroke-dasharray="2 8" opacity=".8">
+      <path d="M305 384 Q420 320 600 300" stroke="#5ff5ff"/>
+      <path d="M896 390 Q760 320 600 300" stroke="#ff6bd8"/>
+      <path d="M440 451 Q520 370 600 300" stroke="#8e8aff"/>
+      <path d="M764 454 Q680 370 600 300" stroke="#6feeff"/>
+    </g>
+
+    <!-- Парящие точки глубины -->
     <g filter="url(#glow)">
-      <path class="data-line" stroke="url(#cyan)"
-            d="M-80 250 C120 42 258 520 430 290 S710 52 890 280 S1080 530 1280 250"/>
-      <path class="data-line alt" stroke="url(#violet)"
-            d="M-60 420 C130 570 270 80 450 270 S690 550 850 290 S1080 60 1260 190"/>
-      <path class="data-line" stroke="url(#cyan)"
-            d="M100 650 C230 410 290 420 410 175 S655 80 770 430 S1010 500 1140 -30"/>
-      <path class="data-line alt" stroke="url(#violet)"
-            d="M60 -40 C245 180 330 125 455 390 S665 500 815 180 S1030 110 1160 660"/>
-      <path class="data-line" stroke="url(#cyan)"
-            d="M-40 120 C170 285 278 220 440 80 S700 120 840 455 S1060 400 1240 110"/>
+      <use href="#scanDot" x="302" y="382"/>
+      <use href="#scanDot" x="900" y="388"/>
+      <use href="#scanDot" x="441" y="452"/>
+      <use href="#scanDot" x="760" y="456"/>
     </g>
 
-    <g opacity=".75">
-      <path class="energy"
-            d="M-80 250 C120 42 258 520 430 290 S710 52 890 280 S1080 530 1280 250"/>
-      <path class="energy"
-            d="M100 650 C230 410 290 420 410 175 S655 80 770 430 S1010 500 1140 -30"
-            style="animation-delay:-2.2s"/>
-      <path class="energy"
-            d="M-40 120 C170 285 278 220 440 80 S700 120 840 455 S1060 400 1240 110"
-            style="animation-delay:-3.5s"/>
+    <!-- Стекло кабины / HUD -->
+    <path d="M75 80 Q600 -20 1125 80 L1080 535
+             Q600 620 120 535Z"
+          fill="url(#glass)"
+          fill-opacity=".16"
+          stroke="#77f7ff"
+          stroke-opacity=".32"
+          stroke-width="1.2"/>
+
+    <path d="M92 104 Q600 22 1108 104"
+          fill="none"
+          stroke="#d57aff"
+          stroke-opacity=".38"
+          stroke-width="1"/>
+
+    <!-- HUD-рамки -->
+    <g fill="none" stroke="url(#neonCyan)" opacity=".9">
+      <path d="M86 135 h88 M86 135 v58"/>
+      <path d="M1114 135 h-88 M1114 135 v58"/>
+      <path d="M86 492 h88 M86 492 v-58"/>
+      <path d="M1114 492 h-88 M1114 492 v-58"/>
     </g>
 
-    <!-- Перспективные орбиты -->
-    <g class="orbit" opacity=".72">
-      <ellipse cx="600" cy="306" rx="350" ry="122"
-               stroke="url(#cyan)" stroke-width="1.6">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="0 600 306;360 600 306"
-                          dur="20s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <ellipse cx="600" cy="306" rx="350" ry="122"
-               stroke="url(#violet)" stroke-width="1">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="65 600 306;-295 600 306"
-                          dur="24s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <ellipse cx="600" cy="306" rx="350" ry="122"
-               stroke="url(#cyan)" stroke-width="1">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="125 600 306;-235 600 306"
-                          dur="28s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <ellipse cx="600" cy="306" rx="350" ry="122"
-               stroke="#eaa0ff"
-               stroke-opacity=".5"
-               stroke-width="1">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="180 600 306;-180 600 306"
-                          dur="32s"
-                          repeatCount="indefinite"/>
-      </ellipse>
+    <g filter="url(#glow)" opacity=".7">
+      <path class="hud" stroke="url(#neonCyan)"
+            d="M115 180 Q230 120 350 175"/>
+      <path class="hud pink"
+            d="M1085 180 Q970 120 850 175"/>
+      <path class="hud"
+            d="M120 500 Q260 540 400 505"/>
+      <path class="hud pink"
+            d="M1080 500 Q940 540 800 505"/>
     </g>
 
-    <!-- Объёмные кольца -->
-    <g transform="translate(600 306)" fill="none" filter="url(#glow)">
-      <ellipse rx="175" ry="64" stroke="#62f5ff" stroke-width="2" opacity=".8">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="0;360"
-                          dur="12s"
-                          repeatCount="indefinite"/>
-      </ellipse>
+    <!-- Линия горизонта -->
+    <path d="M70 318 H1130"
+          stroke="#a8ffff"
+          stroke-opacity=".3"
+          stroke-width="1"
+          stroke-dasharray="2 13">
+      <animate attributeName="stroke-dashoffset"
+               values="0;-90"
+               dur="4s"
+               repeatCount="indefinite"/>
+    </path>
 
-      <ellipse rx="205" ry="75" stroke="#bb6dff" stroke-width="1.4" opacity=".7">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="360;0"
-                          dur="16s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <ellipse rx="238" ry="88" stroke="#66eaff" stroke-width="1" opacity=".55">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="0;360"
-                          dur="22s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-    </g>
-
-    <!-- Парящие узлы в глубине -->
-    <g filter="url(#glow)">
-      <use href="#particle" x="316" y="212">
-        <animateTransform attributeName="transform"
-                          type="translate"
-                          values="0 0;22 -18;0 0"
-                          dur="6s"
-                          repeatCount="indefinite"/>
-      </use>
-
-      <use href="#particle" x="874" y="190">
-        <animateTransform attributeName="transform"
-                          type="translate"
-                          values="0 0;-20 16;0 0"
-                          dur="7s"
-                          repeatCount="indefinite"/>
-      </use>
-
-      <use href="#particle" x="790" y="426">
-        <animateTransform attributeName="transform"
-                          type="translate"
-                          values="0 0;16 12;0 0"
-                          dur="5.5s"
-                          repeatCount="indefinite"/>
-      </use>
-
-      <use href="#particle" x="408" y="402">
-        <animateTransform attributeName="transform"
-                          type="translate"
-                          values="0 0;-16 -12;0 0"
-                          dur="6.8s"
-                          repeatCount="indefinite"/>
-      </use>
-    </g>
-
-    <!-- Центральная объёмная сфера -->
-    <g transform="translate(600 306)" filter="url(#glow)">
-      <circle r="142" fill="url(#coreGlow)" opacity=".58">
-        <animate attributeName="r" values="120;158;120" dur="6s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".38;.72;.38" dur="6s" repeatCount="indefinite"/>
-      </circle>
-
-      <circle r="94" fill="#071536" stroke="#a8ffff" stroke-width="2">
-        <animate attributeName="r" values="88;101;88" dur="5s" repeatCount="indefinite"/>
-      </circle>
-
-      <ellipse rx="94" ry="34" fill="none" stroke="#65f6ff" stroke-width="1.5" opacity=".75">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="0;360"
-                          dur="9s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <ellipse rx="94" ry="34" fill="none" stroke="#ef73da" stroke-width="1.2" opacity=".75">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="60;-300"
-                          dur="11s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <ellipse rx="94" ry="34" fill="none" stroke="#a475ff" stroke-width="1" opacity=".7">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="120;-240"
-                          dur="13s"
-                          repeatCount="indefinite"/>
-      </ellipse>
-
-      <circle r="51" fill="#0b2450" stroke="#70f7ff" stroke-width="2">
-        <animate attributeName="r" values="46;56;46" dur="4s" repeatCount="indefinite"/>
-      </circle>
-
-      <circle r="29" fill="#e9ffff">
-        <animate attributeName="r" values="22;34;22" dur="3.2s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values=".72;1;.72" dur="3.2s" repeatCount="indefinite"/>
-      </circle>
-
-      <circle r="118" fill="none" stroke="#d36dff" stroke-width="1"
-              stroke-dasharray="2 15" opacity=".72">
-        <animateTransform attributeName="transform"
-                          type="rotate"
-                          values="360;0"
-                          dur="10s"
-                          repeatCount="indefinite"/>
-      </circle>
-    </g>
+    <!-- Зерно и рамка -->
+    <rect x="14" y="14" width="1172" height="592"
+          fill="#fff"
+          filter="url(#grain)"
+          opacity=".12"/>
 
     <rect x="14" y="14" width="1172" height="592"
-          fill="#fff" filter="url(#grain)" opacity=".12"/>
-
-    <rect x="14" y="14" width="1172" height="592"
-          rx="38" fill="none" stroke="#7ceeff" stroke-opacity=".34"/>
+          rx="38"
+          fill="none"
+          stroke="#7ceeff"
+          stroke-opacity=".38"/>
 
     <rect x="23" y="23" width="1154" height="574"
-          rx="30" fill="none" stroke="#c16eff" stroke-opacity=".16"/>
+          rx="30"
+          fill="none"
+          stroke="#d06eff"
+          stroke-opacity=".17"/>
   </g>
 </svg>
