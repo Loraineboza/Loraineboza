@@ -1,1 +1,1 @@
-![Total Commits](https://github-readme-stats.vercel.app/api?username=Loraineboza&show_icons=true&include_all_commits=true&hide=stars,prs,issues,contribs&hide_title=true)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Loraineboza&show_icons=true&include_all_commits=true&count_private=true&bg_color=000000&title_color=22d3ee&text_color=a1a1aa&icon_color=22d3ee&border_color=18181b&hide_border=false&number_format=long)
