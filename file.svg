@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="220" fill="#000"/>
+
+  <!-- связи между узлами -->
+  <g stroke="#22d3ee" stroke-opacity="0.25" stroke-width="1">
+    <line x1="120" y1="60"  x2="320" y2="140"/>
+    <line x1="320" y1="140" x2="520" y2="70"/>
+    <line x1="520" y1="70"  x2="680" y2="150"/>
+    <line x1="120" y1="60"  x2="520" y2="70"/>
+    <line x1="320" y1="140" x2="680" y2="150"/>
+    <line x1="120" y1="60"  x2="680" y2="150"/>
+  </g>
+
+  <!-- импульсы, бегущие по связям -->
+  <g fill="#22d3ee">
+    <circle r="3">
+      <animateMotion dur="3s" repeatCount="indefinite"
+        path="M120,60 L320,140"/>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="3.4s" repeatCount="indefinite"
+        path="M320,140 L520,70"/>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="2.6s" repeatCount="indefinite"
+        path="M520,70 L680,150"/>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="4s" repeatCount="indefinite"
+        path="M120,60 L520,70"/>
+    </circle>
+    <circle r="3">
+      <animateMotion dur="3.2s" repeatCount="indefinite"
+        path="M320,140 L680,150"/>
+    </circle>
+  </g>
+
+  <!-- узлы -->
+  <g fill="#22d3ee">
+    <circle cx="120" cy="60"  r="6"/>
+    <circle cx="320" cy="140" r="6"/>
+    <circle cx="520" cy="70"  r="6"/>
+    <circle cx="680" cy="150" r="6"/>
+  </g>
+
+  <!-- ореолы вокруг узлов, пульсируют -->
+  <g>
+    <circle cx="120" cy="60" r="18" fill="url(#glow)">
+      <animate attributeName="r" values="14;22;14" dur="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="320" cy="140" r="18" fill="url(#glow)">
+      <animate attributeName="r" values="14;22;14" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="520" cy="70" r="18" fill="url(#glow)">
+      <animate attributeName="r" values="14;22;14" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="680" cy="150" r="18" fill="url(#glow)">
+      <animate attributeName="r" values="14;22;14" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
